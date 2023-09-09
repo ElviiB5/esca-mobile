@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 const commonStyles = StyleSheet.create({
+    topContainer: {
+        marginTop: 40,
+        marginBottom: 20
+    },
     animationView: {
         flexDirection: "column",
         alignContent: "center",
@@ -17,7 +21,8 @@ const commonStyles = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         elevation: 4,
-        marginVertical: 2
+        marginVertical: 4,
+        marginHorizontal: 15
     },
     purpleTitle: {
         color: '#B1B2FF',

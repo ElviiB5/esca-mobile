@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './screens/Home/Home';
+import PoliticalParties from './screens/PoliticalParties/PoliticalParties';
 
 export default function App() {
   return (
       <View style={styles.container}>
-        <Home />
+        <PoliticalParties />
         <StatusBar style="auto" />
       </View>
   );

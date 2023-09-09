@@ -7,7 +7,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 const Home = () => {
     return (
-        <ScrollView style={home.container}>
+        <ScrollView style={commonStyles.topContainer}>
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",

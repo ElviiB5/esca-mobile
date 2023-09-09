@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const home = StyleSheet.create({
-    container: {
-        marginTop: 40,
-        marginBottom: 20
-    },
     contactView: {
         flexDirection: "row",
         alignItems: "center"
