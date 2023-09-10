@@ -25,7 +25,7 @@ const PoliticalParty = ({...props}) => {
                 </Text>
             </View>
             <View style={party.button}>
-                <Button title='Ver más' color='#B1B2FF' />
+                <Button title='Saber más sobre el candidato' color='#B1B2FF' />
             </View>
         </View>
     )

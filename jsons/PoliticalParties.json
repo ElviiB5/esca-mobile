@@ -5,7 +5,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     },
@@ -15,7 +20,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     },
@@ -25,7 +35,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     },
@@ -35,7 +50,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     },
@@ -45,7 +65,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     },
@@ -55,7 +80,12 @@
         "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
         "presidentialCandidate": "Nombre del Candidato",
         "registerDate": "09 de Septiembre del 2023",
-        "address": "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
+        "address": {
+            "street": "Esta es la calle",
+            "number": "###",
+            "neighborhood": "Esta es la colonia",
+            "zipCode": "######"
+        },
         "phone": "##########",
         "webSite": "https://este-es-el-sitio-web.com"
     }

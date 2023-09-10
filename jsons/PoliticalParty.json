@@ -1,0 +1,42 @@
+{
+    "politcalPartyId": 1,
+    "name": "Nombre del partido político 1",
+    "description": "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
+    "presidentialCandidate": "Nombre del Candidato",
+    "registerDate": "09 de Septiembre del 2023",
+    "address": {
+        "street": "Esta es la calle",
+        "number": "###",
+        "neighborhood": "Esta es la colonia",
+        "zipCode": "######"
+    },
+    "phone": "##########",
+    "webSite": "https://este-es-el-sitio-web.com",
+    "platforms": [
+        {
+            "platformid": 1,
+            "name": "Nombre de la propuesta 1",
+            "description": "Esta es una propuesta del partido político, tengo que extender el texto para que simule una descripción pero no sé qué poner, así que pondré esto, osi, osi. Gracias por leer."
+        },
+        {
+            "platformid": 2,
+            "name": "Nombre de la propuesta 2",
+            "description": "Esta es una propuesta del partido político, tengo que extender el texto para que simule una descripción pero no sé qué poner, así que pondré esto, osi, osi. Gracias por leer."
+        },
+        {
+            "platformid": 3,
+            "name": "Nombre de la propuesta 3",
+            "description": "Esta es una propuesta del partido político, tengo que extender el texto para que simule una descripción pero no sé qué poner, así que pondré esto, osi, osi. Gracias por leer."
+        },
+        {
+            "platformid": 4,
+            "name": "Nombre de la propuesta 4",
+            "description": "Esta es una propuesta del partido político, tengo que extender el texto para que simule una descripción pero no sé qué poner, así que pondré esto, osi, osi. Gracias por leer."
+        },
+        {
+            "platformid": 5,
+            "name": "Nombre de la propuesta 5",
+            "description": "Esta es una propuesta del partido político, tengo que extender el texto para que simule una descripción pero no sé qué poner, así que pondré esto, osi, osi. Gracias por leer."
+        }
+    ]
+}

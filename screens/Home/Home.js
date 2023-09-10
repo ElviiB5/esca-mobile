@@ -36,21 +36,39 @@ Nuestra aplicación ofrece a los usuarios una experiencia transparente y accesib
 
             <View style={commonStyles.animationView}>
                 <Text style={commonStyles.purpleTitle}>Contáctanos</Text>
-                <View style={home.contactView}>
-                    <FontAwesome name='facebook-square' size={42} color={"#B1B2FF"}/>
-                    <Text style={home.contactText}>ESCA</Text>
-                </View>
-                <View style={home.contactView}>
-                    <FontAwesome name='instagram' size={42} color={"#B1B2FF"}/>
-                    <Text style={home.contactText}>ESCA</Text>
-                </View>
-                <View style={home.contactView}>
-                    <FontAwesome name='twitter' size={42} color={"#B1B2FF"}/>
-                    <Text style={home.contactText}>ESCA</Text>
-                </View>
-                <View style={home.contactView}>
-                    <FontAwesome name='youtube-play' size={42} color={"#B1B2FF"}/>
-                    <Text style={home.contactText}>ESCA</Text>
+                <View style={{ 
+                    flexDirection: "row", 
+                    justifyContent: "center", 
+                    alignItems: "center",
+                    alignContent: "center",
+                    paddingLeft: 5
+                }}>
+                    <View style={{ marginRight: 10 }}>
+                        <View style={home.contactView}>
+                            <FontAwesome name='facebook-square' size={42} color={"#B1B2FF"}/>
+                            <Text style={home.contactText}>ESCA</Text>
+                        </View>
+                        <View style={home.contactView}>
+                            <FontAwesome name='instagram' size={42} color={"#B1B2FF"}/>
+                            <Text style={home.contactText}>ESCA</Text>
+                        </View>
+                        <View style={home.contactView}>
+                            <FontAwesome name='twitter' size={42} color={"#B1B2FF"}/>
+                            <Text style={home.contactText}>ESCA</Text>
+                        </View>
+                        <View style={home.contactView}>
+                            <FontAwesome name='youtube-play' size={42} color={"#B1B2FF"}/>
+                            <Text style={home.contactText}>ESCA</Text>
+                        </View>
+                    </View>
+
+                    <LottieView
+                        autoPlay
+                        style={{
+                            height: 200,
+                        }}
+                        source={require('../../assets/animations/welcomeRobot.json')}
+                    />
                 </View>
             </View>
 

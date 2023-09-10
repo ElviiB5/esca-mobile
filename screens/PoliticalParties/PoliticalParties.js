@@ -2,69 +2,7 @@ import React from 'react';
 import { Text, ScrollView, FlatList, View } from 'react-native';
 import PoliticalParty from '../PoliticalParty/PoliticalParty';
 import { commonStyles } from '../commonStyles';
-
-const PoliticalPartiesJson = [
-    {
-        politcalPartyId: 1,
-        name: "Nombre del partido político 1",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    },
-    {
-        politcalPartyId: 2,
-        name: "Nombre del partido político 2",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    },
-    {
-        politcalPartyId: 3,
-        name: "Nombre del partido político 3",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    },
-    {
-        politcalPartyId: 4,
-        name: "Nombre del partido político 4",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    },
-    {
-        politcalPartyId: 5,
-        name: "Nombre del partido político 5",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    },
-    {
-        politcalPartyId: 6,
-        name: "Nombre del partido político 6",
-        description: "Este es un ejemplo de la descripción del partido político, esta va a mostrar sólo una parte de su descripción...",
-        presidentialCandidate: "Nombre del Candidato",
-        registerDate: "09 de Septiembre del 2023",
-        address: "Calle Esta es la calle, No. ###, Col. Esta es la colonia, CP: ######",
-        phone: "##########",
-        webSite: "https://este-es-el-sitio-web.com"
-    }
-]
+import PoliticalPartiesJson from '../../jsons/PoliticalParties.json'
 
 const PoliticalParties = () => {
     console.log("PoliticalPartiesJson",PoliticalPartiesJson)
