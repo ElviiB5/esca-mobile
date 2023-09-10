@@ -6,7 +6,6 @@ export default function App() {
   return (
       <View style={styles.container}>
         <PoliticalPartyInfo />
-        <Text>test</Text>  {/*TODO: Delete, this is just a test */}
         <StatusBar style="auto" />
       </View>
   );
