@@ -40,7 +40,7 @@ const commonStyles = StyleSheet.create({
         color: "#595656",
         fontSize: 17,
         textAlign: "justify",
-        marginTop: 10
+        marginTop: 5
     },
     footer: {
         color: "#B0A9A9",
