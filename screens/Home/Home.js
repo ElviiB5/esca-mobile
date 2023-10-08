@@ -1,13 +1,20 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 import { home } from './styles/Home';
 import { commonStyles } from '../commonStyles';
 import LottieView from 'lottie-react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-const Home = () => {
+const Home = ({navigation}) => {
     return (
         <ScrollView style={commonStyles.topContainer}>
+            <View style={home.button}>
+                <Button 
+                    title='Iniciar sesión' 
+                    color='#B1B2FF' 
+                    onPress={() => navigation.navigate('Login')}
+                />
+            </View>
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",

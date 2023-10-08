@@ -15,7 +15,9 @@ const PoliticalParties = () => {
                 marginTop: 10,
                 marginBottom: -10
             }}>
-                <Text style={commonStyles.pinkTitle}>Partidos políticos</Text></View>
+                <Text style={commonStyles.pinkTitle}>Partidos políticos</Text>
+            </View>
+
             <View>
                 <View style={{ marginBottom: 5 }}>
                     <Text style={commonStyles.footer}>Panorama completo de los partidos políticos participantes en las elecciones presidenciales de México</Text>

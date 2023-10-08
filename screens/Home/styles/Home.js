@@ -9,6 +9,11 @@ const home = StyleSheet.create({
         color: "#AAC4FF",
         fontSize: 20,
         marginLeft: 10
+    },
+    button: {
+        width: 342,
+        marginTop: 10,
+        margin: 10
     }
 })
 

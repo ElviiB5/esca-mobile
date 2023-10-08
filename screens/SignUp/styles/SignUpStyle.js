@@ -1,17 +1,12 @@
 import { StyleSheet } from "react-native"
 
-const loginStyle = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    mainContainer: {
+const signUpStyle = StyleSheet.create({
+    mainView: {
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
-        paddingVertical: 10,
+        paddingVertical: 17,
         paddingHorizontal: 10,
         borderColor: '#ECEAEA',
         shadowColor: "#AAC4FF",
@@ -22,11 +17,8 @@ const loginStyle = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         elevation: 4,
-        marginVertical: 4,
+        marginVertical: 20,
         marginHorizontal: 15
-    },
-    inputs: {
-        width: 280
     },
     titleView: {
         flexDirection: "row",
@@ -34,6 +26,9 @@ const loginStyle = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 30
+    },
+    inputs: {
+        width: 280
     },
     title: {
         color: '#B1B2FF',
@@ -77,4 +72,4 @@ const loginStyle = StyleSheet.create({
     }
 })
 
-export { loginStyle }
+export { signUpStyle }

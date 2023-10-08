@@ -3,14 +3,16 @@ import { Text, TextInput, View } from 'react-native';
 
 import { inputStyle } from './styles/InputStyle';
 
-const Input = ({...props}) => {
+const Input = ({header, placeHolder, onChange, value}) => {
     return (
         <View>
-            <Text style={inputStyle.header} >{props.header}</Text>
+            <Text style={inputStyle.header} >{header}</Text>
             <TextInput 
                 style={inputStyle.textInput}
-                placeholder={props.placeHolder}
+                placeholder={placeHolder}
                 placeholderTextColor={"#B1B2FF"}
+                onChange={onChange}
+                value={value}
             />
         </View>
     )
