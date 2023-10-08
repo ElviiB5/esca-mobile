@@ -1,0 +1,15 @@
+{
+    "name": "Nombre del usuario",
+    "DNI": "XXX-XXX-XXX-XXX",
+    "username": "Username",
+    "bornDate": "10-09-2023",
+    "gender": "Masculino",
+    "state": "Estado",
+    "address": {
+        "municipality": "Municipio",
+        "street": "Esta es la calle",
+        "number": "###",
+        "neighborhood": "Esta es la colonia",
+        "zipCode": "######"
+    }
+}

@@ -2,14 +2,14 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import PoliticalPartyHeader from './PoliticalPartyHeader/PoliticalPartyHeader';
 import PoliticalPartyData from './PoliticalPartyData/PoliticalPartyData';
-import PoliticalPartieJson from '../../jsons/PoliticalParty.json'
+import PoliticalPartyJson from '../../jsons/PoliticalParty.json'
 
 const PoliticalPartyInfo = () => {
     return (
         <View>
             <PoliticalPartyHeader 
-                name={PoliticalPartieJson.name} 
-                candidate={PoliticalPartieJson.presidentialCandidate} 
+                name={PoliticalPartyJson.name} 
+                candidate={PoliticalPartyJson.presidentialCandidate} 
             />
             
             <View style={{
@@ -19,11 +19,11 @@ const PoliticalPartyInfo = () => {
                 marginBottom: -30}}></View>
 
             <PoliticalPartyData
-                register={PoliticalPartieJson.registerDate}
-                address={PoliticalPartieJson.address}
-                phone={PoliticalPartieJson.phone}
-                webSite={PoliticalPartieJson.webSite}
-                platforms={PoliticalPartieJson.platforms}
+                register={PoliticalPartyJson.registerDate}
+                address={PoliticalPartyJson.address}
+                phone={PoliticalPartyJson.phone}
+                webSite={PoliticalPartyJson.webSite}
+                platforms={PoliticalPartyJson.platforms}
             />
         </View>
     )
