@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ScrollView, Text, View } from 'react-native';
-import { commonStyles } from '../commonStyles';
-import { party } from './styles/PoliticalParty';
+import { commonStyles } from '../../commonStyles';
+import { party } from '../../PoliticalParty/styles/PoliticalParty';
 
 const PoliticalParty = ({...props}) => {
     return (

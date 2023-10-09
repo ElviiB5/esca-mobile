@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Text, TouchableOpacity, View } from 'react-native';
+import { AuthContext, useAuth } from '../../context/AuthContext';
 
 import { loginStyle } from './styles/LoginStyle';
 import Input from '../common/Input/Input';
@@ -9,12 +10,17 @@ import EvilIcons from '@expo/vector-icons/EvilIcons'
 import AntDesign from '@expo/vector-icons/AntDesign'
 
 const Login = ({navigation}) => {
+    const { userName, userRol, setUserName, setUserRol } = useAuth();
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [rol, setRol] = useState("votante")
 
-    const login = () => {
+    const handleLogin = () => {
         console.log("Username",username)
         console.log("Pasword",password)
+        setUserName(username)
+        setUserRol(rol)
         setUsername('')
         setPassword('')
     }
@@ -47,7 +53,7 @@ const Login = ({navigation}) => {
                     />  
                     <TouchableOpacity
                         style={loginStyle.button}
-                        onPress={login}
+                        onPress={handleLogin}
                         >
                         <Text style={loginStyle.textButton} >Iniciar sesión</Text>
                     </TouchableOpacity>
