@@ -1,0 +1,49 @@
+{
+    "GeneralCount":[
+        {
+            "PoliticalParty": "Morena",
+            "Votes":15000
+        },
+        {
+            "PoliticalParty": "Pri",
+            "Votes":15000
+        },{
+            "PoliticalParty": "PAN",
+            "Votes":15000
+        }
+    ],
+    "CountDetail":[
+        {
+            "State": "Oaxaca",
+            "votes":[
+                {
+                    "PoliticalParty": "Morena",
+                    "Votes":15000
+                },
+                {
+                    "PoliticalParty": "Pri",
+                    "Votes":15000
+                },{
+                    "PoliticalParty": "PAN",
+                    "Votes":15000
+                }
+            ]
+        },
+        {
+            "State": "Guanajuato",
+            "votes":[
+                {
+                    "PoliticalParty": "Morena",
+                    "Votes":15000
+                },
+                {
+                    "PoliticalParty": "Pri",
+                    "Votes":15000
+                },{
+                    "PoliticalParty": "PAN",
+                    "Votes":15000
+                }
+            ]
+        }
+    ]
+}

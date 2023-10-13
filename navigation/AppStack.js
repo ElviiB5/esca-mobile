@@ -67,19 +67,6 @@ const TabStack = () => {
         }}/>
 
       <Tab.Screen 
-        name="Profile" 
-        component={Profile}
-        options={{
-          headerStyle: {
-            backgroundColor: '#D2DAFF',
-          },
-          tabBarLabel: 'Perfil',
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user-circle" color={color} size={size} />
-          ),
-        }}/>
-
-      <Tab.Screen 
         name="Votes" 
         component={Votes}
         options={{
@@ -91,6 +78,19 @@ const TabStack = () => {
             <FontAwesome name="globe" color={color} size={size} />
           ),
         }}/>
+
+        <Tab.Screen 
+          name="Profile" 
+          component={Profile}
+          options={{
+            headerStyle: {
+              backgroundColor: '#D2DAFF',
+            },
+            tabBarLabel: 'Perfil',
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="user-circle" color={color} size={size} />
+            ),
+          }}/>
     </Tab.Navigator>
   );
 }

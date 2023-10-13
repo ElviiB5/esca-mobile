@@ -1,38 +1,23 @@
 import React from 'react';
-import { View } from 'react-native';
-import { BarChart } from 'react-native-chart-kit';
+import { ScrollView, View } from 'react-native';
+import StateVotes from './StateVotes/StateVotes';
+import GeneralVotes from './GeneralVotes/GeneralVotes'
 
 const Votes = () => {
-    const data = {
-        labels: ["Party1", "Party2", "Party3", "Party4", "Party5", "Party6"],
-        datasets: [
-          {
-            data: [20, 45, 28, 80, 99, 43]
-          }
-        ]
-      };
-
-    const chartConfig = {
-        backgroundGradientFrom: "#EEF1FF",
-        backgroundGradientTo: "#EEF1FF",
-        color: (opacity = 1) => `#F79BD3`,
-        barColors: ["#AAC4FF", "#D2DAFF", "#EEF1FF"],
-        strokeWidth: 7,
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false,
-      };
+    const pp = ["Party 1", "Party 2", "Party 3"]
+    const data = [
+        {
+          data: [20, 45, 28]
+        }
+    ]
 
     return (
-        <View>
-           <BarChart
-                data={data}
-                width={345}
-                height={300}
-                yAxisLabel="$"
-                chartConfig={chartConfig}
-                verticalLabelRotation={30}
-            />
-        </View>
+        <ScrollView>
+            <GeneralVotes />
+            <StateVotes state={"Guanajuato"} politicalParties={pp} votesArray={data} />
+            <StateVotes state={"CDMX"} politicalParties={pp} votesArray={data} />
+            <StateVotes state={"Guadalajara"} politicalParties={pp} votesArray={data} />
+        </ScrollView>
     )
 }
 
