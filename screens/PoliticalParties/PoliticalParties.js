@@ -4,7 +4,7 @@ import PoliticalParty from '../PoliticalParty/PoliticalParty';
 import { commonStyles } from '../commonStyles';
 import PoliticalPartiesJson from '../../jsons/PoliticalParties.json'
 
-const PoliticalParties = () => {
+const PoliticalParties = ({navigation}) => {
     console.log("PoliticalPartiesJson",PoliticalPartiesJson)
     return (
         <View style={commonStyles.topContainer}>
@@ -28,7 +28,8 @@ const PoliticalParties = () => {
                     renderItem={({ item }) => <PoliticalParty 
                                                     name={item.name} 
                                                     description={item.description} 
-                                                    candidate={item.presidentialCandidate} />
+                                                    candidate={item.presidentialCandidate}
+                                                    navigation={navigation} />
                     }
                     keyExtractor={item => item.politcalPartyId}
                 />

@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Text, TouchableOpacity, View } from 'react-native';
-import { AuthContext, useAuth } from '../../context/AuthContext';
 
 import { loginStyle } from './styles/LoginStyle';
 import Input from '../common/Input/Input';
@@ -8,19 +7,25 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 import AntDesign from '@expo/vector-icons/AntDesign'
+import { useDispatch } from 'react-redux';
+import { setLoginAuth } from '../../redux/actions/authActions';
 
 const Login = ({navigation}) => {
-    const { userName, userRol, setUserName, setUserRol } = useAuth();
+
+    const dispatch = useDispatch()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [rol, setRol] = useState("votante")
 
     const handleLogin = () => {
+        const returnedData = {
+            name: 'Christian',
+            rol: 'Votante'
+        }
+
+        dispatch(setLoginAuth(returnedData.name, returnedData.rol))
         console.log("Username",username)
         console.log("Pasword",password)
-        setUserName(username)
-        setUserRol(rol)
         setUsername('')
         setPassword('')
     }

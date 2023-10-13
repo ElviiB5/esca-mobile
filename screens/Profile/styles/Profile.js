@@ -5,7 +5,7 @@ const profile = StyleSheet.create({
         color: "#AAC4FF",
         fontSize: 20,
         marginLeft: 10,
-        textAling: 'center'
+        textAlign: 'center'
     },
     button: {
         width: 290,

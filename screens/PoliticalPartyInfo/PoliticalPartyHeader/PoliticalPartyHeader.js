@@ -5,7 +5,7 @@ import { partyInfo } from '../styles/PoliticalPartyInfo';
 
 const PoliticalPartyHeader = ({...props}) => {
     return (
-        <View style={commonStyles.animationView}>
+        <View style={partyInfo.animationView}>
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",

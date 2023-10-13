@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 const commonStyles = StyleSheet.create({
     topContainer: {
-        marginTop: 40,
-        marginBottom: 20
+        marginBottom: 210,
+        marginHorizontal: 10
     },
     animationView: {
         flexDirection: "column",

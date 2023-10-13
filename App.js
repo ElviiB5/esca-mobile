@@ -1,21 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { AuthContext } from './context/AuthContext';
+import { Provider } from 'react-redux';
+import { Store } from './redux/store';
 
-import AuthStack from './navigation/AuthStack';
-import AppStack from './navigation/AppStack'
+import Stacks from './navigation/Stacks';
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-
   return (
-    <NavigationContainer>
-      <AuthProvider>
-        {isLoggedIn ? <AppStack /> : <AuthStack />}
-      </AuthProvider>
-    </NavigationContainer>
+    <Provider store={Store}>
+      <NavigationContainer>
+          <Stacks />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

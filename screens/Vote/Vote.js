@@ -6,7 +6,7 @@ import { commonStyles } from '../commonStyles';
 
 const Vote = () => {
     return (
-        <View>
+        <View style={{ marginBottom: 65 }}>
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",

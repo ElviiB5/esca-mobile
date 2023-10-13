@@ -25,7 +25,11 @@ const PoliticalParty = ({...props}) => {
                 </Text>
             </View>
             <View style={party.button}>
-                <Button title='Saber más sobre el candidato' color='#B1B2FF' />
+                <Button 
+                    title='Saber más sobre el candidato' 
+                    color='#B1B2FF' 
+                    onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
+                />
             </View>
         </View>
     )
