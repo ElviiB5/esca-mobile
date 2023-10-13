@@ -2,15 +2,18 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
+import { Store } from './redux/store';
 
-import AuthStack from './navigation/AuthStack';
-// import AppStack from './navigation/AppStack'
+import Stacks from './navigation/Stacks';
 
 function App() {
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+    <Provider store={Store}>
+      <NavigationContainer>
+          <Stacks />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

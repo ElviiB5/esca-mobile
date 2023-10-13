@@ -7,12 +7,23 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 import AntDesign from '@expo/vector-icons/AntDesign'
+import { useDispatch } from 'react-redux';
+import { setLoginAuth } from '../../redux/actions/authActions';
 
 const Login = ({navigation}) => {
+
+    const dispatch = useDispatch()
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const login = () => {
+    const handleLogin = () => {
+        const returnedData = {
+            name: 'Christian',
+            rol: 'Votante'
+        }
+
+        dispatch(setLoginAuth(returnedData.name, returnedData.rol))
         console.log("Username",username)
         console.log("Pasword",password)
         setUsername('')
@@ -47,7 +58,7 @@ const Login = ({navigation}) => {
                     />  
                     <TouchableOpacity
                         style={loginStyle.button}
-                        onPress={login}
+                        onPress={handleLogin}
                         >
                         <Text style={loginStyle.textButton} >Iniciar sesión</Text>
                     </TouchableOpacity>

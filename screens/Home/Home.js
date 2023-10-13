@@ -1,20 +1,13 @@
 import React from 'react';
-import { Button, ScrollView, Text, View } from 'react-native';
+import { Button, Image, ScrollView, Text, View } from 'react-native';
 import { home } from './styles/Home';
 import { commonStyles } from '../commonStyles';
 import LottieView from 'lottie-react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-const Home = ({navigation}) => {
+const Home = () => {
     return (
-        <ScrollView style={commonStyles.topContainer}>
-            <View style={home.button}>
-                <Button 
-                    title='Iniciar sesión' 
-                    color='#B1B2FF' 
-                    onPress={() => navigation.navigate('Login')}
-                />
-            </View>
+        <ScrollView style={home.topContainer}>
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",
@@ -38,10 +31,15 @@ Nuestra aplicación ofrece a los usuarios una experiencia transparente y accesib
 
             <View style={commonStyles.animationView}>
                 <Text style={commonStyles.purpleTitle}>Calendario electoral</Text>
-                <Text style={commonStyles.normalText}>Aquí va el calendario</Text>
+                <View style={home.imageContainter}>
+                    <Image
+                        source={require('../../assets/calendar.jpg')}
+                        style={{width: 200, height: 200}}
+                    />
+                </View>
             </View>
 
-            <View style={commonStyles.animationView}>
+            <View style={home.animationView}>
                 <Text style={commonStyles.purpleTitle}>Contáctanos</Text>
                 <View style={{ 
                     flexDirection: "row", 
@@ -50,7 +48,7 @@ Nuestra aplicación ofrece a los usuarios una experiencia transparente y accesib
                     alignContent: "center",
                     paddingLeft: 5
                 }}>
-                    <View style={{ marginRight: 10 }}>
+                    <View style={{ marginRight: 10, marginLeft: 100 }}>
                         <View style={home.contactView}>
                             <FontAwesome name='facebook-square' size={42} color={"#B1B2FF"}/>
                             <Text style={home.contactText}>ESCA</Text>

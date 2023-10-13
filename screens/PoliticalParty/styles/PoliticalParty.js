@@ -16,6 +16,9 @@ const party = StyleSheet.create({
     button: {
         width: 300,
         marginTop: 10
+    },
+    imageContainter: {
+        margin: 10
     }
 })
 

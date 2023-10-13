@@ -13,18 +13,21 @@ const PoliticalPartyInfo = () => {
             />
             
             <View style={{
-                marginTop: 20,
+                marginTop: 5,
                 borderBottomColor: '#AAC4FF',
                 borderBottomWidth: 2,
-                marginBottom: -30}}></View>
+                marginBottom: -15}}></View>
+            
+            <View style={{ marginTop: 20 }}>
+                <PoliticalPartyData
+                    register={PoliticalPartyJson.registerDate}
+                    address={PoliticalPartyJson.address}
+                    phone={PoliticalPartyJson.phone}
+                    webSite={PoliticalPartyJson.webSite}
+                    platforms={PoliticalPartyJson.platforms}
+                />
+            </View>
 
-            <PoliticalPartyData
-                register={PoliticalPartyJson.registerDate}
-                address={PoliticalPartyJson.address}
-                phone={PoliticalPartyJson.phone}
-                webSite={PoliticalPartyJson.webSite}
-                platforms={PoliticalPartyJson.platforms}
-            />
         </View>
     )
 }

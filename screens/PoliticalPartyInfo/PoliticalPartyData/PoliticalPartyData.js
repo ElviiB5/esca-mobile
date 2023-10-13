@@ -9,7 +9,7 @@ const PoliticalPartyData = ({...props}) => {
     const platforms = props.platforms
 
     return (
-        <ScrollView style={commonStyles.topContainer}>
+        <ScrollView style={partyInfo.topContainer}>
             <View style={partyInfo.dataContainer}>
                 <Text style={partyInfo.purpleTextTitle}>Sobre el partido político</Text>
 

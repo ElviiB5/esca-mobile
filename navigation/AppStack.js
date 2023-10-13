@@ -1,81 +1,107 @@
 import React from 'react';
-import 'react-native-gesture-handler';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
-// import CustomDrawer from '../components/CustomDrawer';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import EvilIcons from '@expo/vector-icons/EvilIcons'
-
-import PoliticalParty from '../screens/Admin/CreatePoliticalParty/CreatePoliticalParty';
 import PoliticalParties from '../screens/PoliticalParties/PoliticalParties'
 import PoliticalPartyInfo from '../screens/PoliticalPartyInfo/PoliticalPartyInfo'
 import Vote from '../screens/Vote/Vote'
+import Profile from '../screens/Profile/Profile'
+import Home from '../screens/Home/Home';
+import Votes from '../screens/Votes/Votes';
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { Ionicons } from '@expo/vector-icons';
 
-const Drawer = createDrawerNavigator();
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const AppStack = () => {
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const TabStack = () => {
   return (
-    <Drawer.Navigator
-        drawerContent={props => <CustomDrawer {...props} />}
-        screenOptions={{
-        headerShown: false,
-        drawerActiveBackgroundColor: '#aa18ea',
-        drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: '#333',
-        drawerLabelStyle: {
-            marginLeft: -25,
-            fontFamily: 'Roboto-Medium',
-            fontSize: 15,
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarActiveTintColor: '#F79BD3',
+        tabBarInactiveTintColor: '#B1B2FF',
+        tabBarStyle: {
+          backgroundColor: '#D2DAFF',
+          paddingBottom: 3,
         },
-        }}
+      })}
     >
-      <Drawer.Screen 
-        name="PoliticalParty"
-        component={PoliticalParty} 
-      />
-      <Drawer.Screen 
-        name="Vote"
-        component={Vote}
-      />
-    </Drawer.Navigator>
+      <Tab.Screen 
+        name="Home" 
+        component={Home} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
+        }}/>
+
+      <Tab.Screen 
+        name="PoliticalParties" 
+        component={PoliticalParties} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Partidos políticos',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="heart" color={color} size={size} />
+          ),
+        }}/>
+
+      <Tab.Screen 
+        name="Vote" 
+        component={Vote} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Votar',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="globe" color={color} size={size} />
+          ),
+        }}/>
+
+      <Tab.Screen 
+        name="Profile" 
+        component={Profile}
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Perfil',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user-circle" color={color} size={size} />
+          ),
+        }}/>
+
+      <Tab.Screen 
+        name="Votes" 
+        component={Votes}
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Votos',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user-circle" color={color} size={size} />
+          ),
+        }}/>
+    </Tab.Navigator>
   );
 }
 
-
-// const AuthStack = () => {
-//   return (
-//     <Drawer.Navigator
-//       drawerContent={props => <CustomDrawer {...props} />}
-//       screenOptions={{
-//         headerShown: false,
-//         drawerActiveBackgroundColor: '#aa18ea',
-//         drawerActiveTintColor: '#fff',
-//         drawerInactiveTintColor: '#333',
-//         drawerLabelStyle: {
-//           marginLeft: -25,
-//           fontFamily: 'Roboto-Medium',
-//           fontSize: 15,
-//         },
-//       }}>
-//       <Drawer.Screen
-//         name="PoliticalParty"
-//         component={PoliticalParty}
-//         options={{
-//           drawerIcon: ({color}) => (
-//             <EvilIcons name='arrow-right' size={52} color={"#B1B2FF"}/>
-//           ),
-//         }}
-//       />
-//       <Drawer.Screen
-//         options={{
-//           drawerIcon: ({color}) => (
-//             <EvilIcons name='arrow-right' size={52} color={"#B1B2FF"}/>
-//           ),
-//         }}
-//       />
-//     </Drawer.Navigator>
-//   );
-// };
+const AppStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="TabStack" component={TabStack} />
+      <Stack.Screen name="PoliticalPartyInfo" component={PoliticalPartyInfo} />
+    </Stack.Navigator>
+  );
+}
 
 export default AppStack;
