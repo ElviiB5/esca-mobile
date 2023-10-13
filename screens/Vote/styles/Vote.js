@@ -27,6 +27,9 @@ const partyVote = StyleSheet.create({
         width: 300,
         marginTop: 10
     },
+    imageContainter: {
+        margin: 10
+    }
 })
 
 export { partyVote }

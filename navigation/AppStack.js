@@ -5,6 +5,8 @@ import PoliticalPartyInfo from '../screens/PoliticalPartyInfo/PoliticalPartyInfo
 import Vote from '../screens/Vote/Vote'
 import Profile from '../screens/Profile/Profile'
 import Home from '../screens/Home/Home';
+import Votes from '../screens/Votes/Votes';
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Ionicons } from '@expo/vector-icons';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -47,7 +49,7 @@ const TabStack = () => {
           },
           tabBarLabel: 'Partidos políticos',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="heart" color={color} size={size} />
           ),
         }}/>
 
@@ -58,9 +60,9 @@ const TabStack = () => {
           headerStyle: {
             backgroundColor: '#D2DAFF',
           },
-          tabBarLabel: 'Votos',
+          tabBarLabel: 'Votar',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <FontAwesome name="globe" color={color} size={size} />
           ),
         }}/>
 
@@ -73,7 +75,20 @@ const TabStack = () => {
           },
           tabBarLabel: 'Perfil',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <FontAwesome name="user-circle" color={color} size={size} />
+          ),
+        }}/>
+
+      <Tab.Screen 
+        name="Votes" 
+        component={Votes}
+        options={{
+          headerStyle: {
+            backgroundColor: '#D2DAFF',
+          },
+          tabBarLabel: 'Votos',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user-circle" color={color} size={size} />
           ),
         }}/>
     </Tab.Navigator>

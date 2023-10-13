@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ScrollView, Text, View } from 'react-native';
+import { Button, Image, ScrollView, Text, View } from 'react-native';
 import { home } from './styles/Home';
 import { commonStyles } from '../commonStyles';
 import LottieView from 'lottie-react-native';
@@ -31,7 +31,12 @@ Nuestra aplicación ofrece a los usuarios una experiencia transparente y accesib
 
             <View style={commonStyles.animationView}>
                 <Text style={commonStyles.purpleTitle}>Calendario electoral</Text>
-                <Text style={commonStyles.normalText}>Aquí va el calendario</Text>
+                <View style={home.imageContainter}>
+                    <Image
+                        source={require('../../assets/calendar.jpg')}
+                        style={{width: 200, height: 200}}
+                    />
+                </View>
             </View>
 
             <View style={home.animationView}>

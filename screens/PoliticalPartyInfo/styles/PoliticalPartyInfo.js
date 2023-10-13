@@ -21,7 +21,7 @@ const partyInfo = StyleSheet.create({
         shadowRadius: 2.62,
         elevation: 4,
         marginTop: 30,
-        marginBottom: 15,
+        marginBottom: 13,
         marginHorizontal: 15
     },
     topContainer: {
@@ -71,8 +71,11 @@ const partyInfo = StyleSheet.create({
         shadowRadius: 2.62,
         elevation: 4,
         marginTop: 17,
-        marginBottom: 100,
+        marginBottom: 350,
         marginHorizontal: 5
+    },
+    imageContainter: {
+        margin: 10
     }
 })
 

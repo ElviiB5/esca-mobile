@@ -38,6 +38,9 @@ const home = StyleSheet.create({
         width: 342,
         marginTop: 10,
         margin: 10
+    },
+    imageContainter: {
+        margin: 10
     }
 })
 
