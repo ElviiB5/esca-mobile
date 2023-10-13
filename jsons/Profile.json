@@ -1,5 +1,6 @@
 {
-    "name": "Nombre del usuario",
+    "firstname": "Nombre del usuario",
+    "lastname": "Apellidos del usuario",
     "DNI": "XXX-XXX-XXX-XXX",
     "username": "Username",
     "bornDate": "10-09-2023",

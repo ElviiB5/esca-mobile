@@ -12,9 +12,13 @@ const Profile = () => {
             <View>
                 <View>        
                     <View style={commonStyles.animationView}>
-                        <Text style={commonStyles.purpleTitle}>{ProfileJson.name}</Text>
+                        <Text style={commonStyles.purpleTitle}>{ProfileJson.firstname}</Text>
                         <Text style={profile.contactText}>DNI:</Text>
                         <Text style={commonStyles.normalText}>{ProfileJson.DNI}</Text>
+                        <Text style={profile.contactText}>Nombres:</Text>
+                        <Text style={commonStyles.normalText}>{ProfileJson.firstname}</Text>
+                        <Text style={profile.contactText}>Apellidos:</Text>
+                        <Text style={commonStyles.normalText}>{ProfileJson.lastname}</Text>
                         <Text style={profile.contactText}>Fecha de nacimiento:</Text>
                         <Text style={commonStyles.normalText}>{ProfileJson.bornDate}</Text>
                         <Text style={profile.contactText}>Sexo:</Text>
