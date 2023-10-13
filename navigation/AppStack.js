@@ -49,7 +49,7 @@ const TabStack = () => {
           },
           tabBarLabel: 'Partidos políticos',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart" color={color} size={size} />
+            <Ionicons name="ios-flag" color={color} size={size} />
           ),
         }}/>
 
@@ -62,7 +62,7 @@ const TabStack = () => {
           },
           tabBarLabel: 'Votar',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="globe" color={color} size={size} />
+            <FontAwesome name="check-square" color={color} size={size} />
           ),
         }}/>
 
@@ -88,7 +88,7 @@ const TabStack = () => {
           },
           tabBarLabel: 'Votos',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user-circle" color={color} size={size} />
+            <FontAwesome name="globe" color={color} size={size} />
           ),
         }}/>
     </Tab.Navigator>
