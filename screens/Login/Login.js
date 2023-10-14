@@ -24,8 +24,6 @@ const Login = ({navigation}) => {
         } else {
             const { data, isLogin} = await dispatch(loginFetch(username, password))
             
-            console.log("data",data)
-            console.log("isLogin",isLogin)
             if(isLogin === true){
                 console.log("Username",username)
                 console.log("data.fullName",data.fullName)

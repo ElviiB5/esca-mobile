@@ -5,12 +5,7 @@ import AppStack from './AppStack'
 import { useSelector } from 'react-redux';
 
 const Stacks = () => {
-    const { name, token } = useSelector(state => state.authReducer);
-
-    useEffect(() => {
-      console.log("nameeee",name)
-      console.log("tokennnn",token)
-    }, [name, token])
+    const { token } = useSelector(state => state.authReducer);
 
     return (
         <>

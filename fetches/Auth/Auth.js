@@ -10,7 +10,6 @@ export const loginFetch = (username, password) => async (dispatch) => {
       form.append("Password",password)
       const { data } = await axios.post(`${BASIC_URL}/ManageAccess/Login`, form);
       console.log("Auth.loginFetch data",data);
-      console.log("Auth.loginFetch data.token",data.token);
       
       dispatch({
           type: USER_LOGIN_SUCCESS,
