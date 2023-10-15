@@ -11,16 +11,20 @@ export const loginFetch = (username, password) => async (dispatch) => {
       const { data } = await axios.post(`${BASIC_URL}/ManageAccess/Login`, form);
       console.log("Auth.loginFetch data",data);
       
-      dispatch({
-          type: USER_LOGIN_SUCCESS,
-          payload: {
-              userName: data.fullName,
-              userRol: data.userType,
-              jwtToken: data.token
-          }
-      });
-    
-      return { data, isLogin: true}
+      if (data.token) {
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: {
+                userName: data.fullName,
+                userRol: data.userType,
+                jwtToken: data.token
+            }
+        });
+      
+        return { data, isLogin: true}
+      } else {
+        return { data, isLogin: false}
+      }
     } catch (error) {
       console.log("Auth.loginFetch error",error);
       console.error(error);
