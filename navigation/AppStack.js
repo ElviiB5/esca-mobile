@@ -2,6 +2,7 @@ import React from 'react';
 
 import PoliticalParties from '../screens/PoliticalParties/PoliticalParties'
 import PoliticalPartyInfo from '../screens/PoliticalPartyInfo/PoliticalPartyInfo'
+import EditProfile from '../screens/Profile/EditProfile/EditProfile';
 import Vote from '../screens/Vote/Vote'
 import Profile from '../screens/Profile/Profile'
 import Home from '../screens/Home/Home';
@@ -100,6 +101,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="TabStack" component={TabStack} />
       <Stack.Screen name="PoliticalPartyInfo" component={PoliticalPartyInfo} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
 }
