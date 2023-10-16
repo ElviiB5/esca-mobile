@@ -37,6 +37,15 @@ const PoliticalParty = ({...props}) => {
                     onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
                 />
             </View>
+            {props.rol === "Administrador" && 
+                <View style={{ width: 300, marginTop: 6 }}>
+                    <Button 
+                        title='Editar' 
+                        color='#FBECB2' 
+                        onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
+                    />
+                </View>
+            }
         </View>
     )
 }

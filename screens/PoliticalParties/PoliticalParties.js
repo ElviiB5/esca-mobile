@@ -1,13 +1,35 @@
-import React from 'react';
-import { Text, ScrollView, FlatList, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, ScrollView, FlatList, View, Button } from 'react-native';
 import PoliticalParty from '../PoliticalParty/PoliticalParty';
 import { commonStyles } from '../commonStyles';
+
 import PoliticalPartiesJson from '../../jsons/PoliticalParties.json'
+import { useDispatch, useSelector } from 'react-redux';
+import { getPartiesFetch } from '../../fetches/PoliticalParties/PoliticalParties';
 
 const PoliticalParties = ({navigation}) => {
-    console.log("PoliticalPartiesJson",PoliticalPartiesJson)
+    const { token, rol } = useSelector(state => state.authReducer);
+    const { parties } = useSelector(state => state.partiesReducer);
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPartiesFetch(token))
+    }, [])
+
+    console.log("parties",parties)
     return (
         <View style={commonStyles.topContainer}>
+            {rol === "Administrador" && 
+                <View style={{ width: 340, marginTop: 10 }}>
+                    <Button 
+                        title='Crear Partido Político' 
+                        color='#E95793' 
+                        onPress={() => navigation.navigate('PoliticalPartyInfo')} 
+                    />
+                </View>
+            }
+
             <View style={{ 
                 alignContent: "center",
                 justifyContent: "center",
@@ -29,7 +51,8 @@ const PoliticalParties = ({navigation}) => {
                                                     name={item.name} 
                                                     description={item.description} 
                                                     candidate={item.presidentialCandidate}
-                                                    navigation={navigation} />
+                                                    navigation={navigation}
+                                                    rol={rol} />
                     }
                     keyExtractor={item => item.politcalPartyId}
                 />

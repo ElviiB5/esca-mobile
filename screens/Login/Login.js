@@ -9,25 +9,41 @@ import EvilIcons from '@expo/vector-icons/EvilIcons'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { useDispatch } from 'react-redux';
 import { setLoginAuth } from '../../redux/actions/authActions';
+import { loginFetch } from '../../fetches/Auth/Auth';
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const Login = ({navigation}) => {
-
     const dispatch = useDispatch()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = () => {
-        const returnedData = {
-            name: 'Christian',
-            rol: 'Votante'
+    const handleLogin = async () => {
+        if(username === "" ||  password === ""){
+            showMessage({
+              message: "ATENCIÓN!",
+              description: "No pueden haber campos vacíos",
+              type: "warning",
+            });
+        } else {
+            const { data, isLogin} = await dispatch(loginFetch(username, password))
+            
+            if (isLogin === true){
+                console.log("Username",username)
+                console.log("data.fullName",data.fullName)
+                console.log("data.userType",data.userType)
+                console.log("data.token",data.token)
+                setUsername('')
+                setPassword('')
+            } else {
+                showMessage({
+                  message: "ERROR",
+                  description: "Credenciales incorrectas",
+                  type: "danger",
+                });
+            }
         }
-
-        dispatch(setLoginAuth(returnedData.name, returnedData.rol))
-        console.log("Username",username)
-        console.log("Pasword",password)
-        setUsername('')
-        setPassword('')
     }
 
     return (
@@ -74,6 +90,7 @@ const Login = ({navigation}) => {
                     <Text style={loginStyle.sloganText}>Tu voz, tu voto, tu país</Text>
                 </View>
             </View>
+            <FlashMessage position="top" />
         </View>
     )
 }
