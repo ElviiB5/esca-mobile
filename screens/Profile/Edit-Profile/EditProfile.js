@@ -1,12 +1,18 @@
 import React from 'react';
-import { Button, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-
+import { ScrollView, View } from 'react-native';
 import Top from './Top/Top';
+import Bottom from './Bottom/Bottom';
 
-const EditProfile = ({}) => {
+const EditProfile = ({navigation}) => {
     return(
         <ScrollView>
-            <Top />
+            <Top passedNavgation={navigation} />
+            <View style={{
+                marginTop: -2,
+                borderBottomColor: '#AAC4FF',
+                borderBottomWidth: 2,
+                marginBottom: -10}}></View>
+            <Bottom passedNavgation={navigation}/>
         </ScrollView> 
     )
     }

@@ -1,16 +1,30 @@
 import React, {useState} from 'react';
-import { Button, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import Input from '../../../common/Input/Input';
 import { EditProfileStyles } from '../styles/EditProfileStyle';
 
-const Top = (navigation) => {
+const Top = (props) => {
     const [userValues, setUserValues] = useState({
         username: '',
         password: '',
-        repeatPassword: ''
+        repeatPassword: '',
+        dni: '',
+        firstname: '',
+        lastname: '',
+        birthDate: '',
+        gender: '',
+        municipality: '',
+        state: '',
+        street: '',
+        number: '',
+        neighbor: '',
+        zip: '',
+        userType: ''
     })
+
     return (
-        <View style={EditProfileStyles.mainView}>
+        <View >
+            <View style={EditProfileStyles.mainView}>
                 <View style={EditProfileStyles.titleView}>
                     <Text style={EditProfileStyles.title}>Editar perfil</Text>
                 </View>
@@ -26,34 +40,36 @@ const Top = (navigation) => {
                     value={userValues.dni}
                     /> 
                 </View>  
-                    <View style={EditProfileStyles.inputs}>
-                        <Input 
-                            style={EditProfileStyles.textInput} 
-                            header="New Password" 
-                            placeHolder="New Password"
-                            isLogged={true} 
-                            onChange={(event) => {
-                                setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
-                            }
-                            value={userValues.dni}
-                        /> 
-                    </View> 
-                    <View style={EditProfileStyles.inputs}>
-                        <Input 
-                            style={EditProfileStyles.textInput} 
-                            header="Confirma Password" 
-                            placeHolder="Confirma Password"
-                            isLogged={true} 
-                            onChange={(event) => {
-                                setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
-                            }
-                            value={userValues.dni}
-                        /> 
-                    </View>
-                    <View style={EditProfileStyles.button}>
-                        <Button title='CAMBIAR' color='#B1B2FF' onPress={() => navigation.navigate('Profile')}/>
-                    </View>
-            </View> 
+                <View style={EditProfileStyles.inputs}>
+                    <Input 
+                        style={EditProfileStyles.textInput} 
+                        header="New Password" 
+                        placeHolder="New Password"
+                        isLogged={true} 
+                        onChange={(event) => {
+                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                        }
+                        value={userValues.dni}
+                    /> 
+                </View> 
+                <View style={EditProfileStyles.inputs}>
+                    <Input 
+                        style={EditProfileStyles.textInput} 
+                        header="Confirma Password" 
+                        placeHolder="Confirma Password"
+                        isLogged={true} 
+                        onChange={(event) => {
+                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                        }
+                        value={userValues.dni}
+                    /> 
+                </View>
+                <View style={EditProfileStyles.button}>
+                    <Button title='CAMBIAR' color='#B1B2FF' onPress={() => props.passedNavgation.navigate('Profile')}/>
+                </View>
+            </View>            
+        </View> 
+            
     )
 }
 
