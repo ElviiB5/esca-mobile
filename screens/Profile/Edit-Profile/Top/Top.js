@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Text, TouchableOpacity, View } from 'react-native';
-import EditProfileStyles from '../styles/EditProfileStyle'
 import Input from '../../../common/Input/Input';
+import { EditProfileStyles } from '../styles/EditProfileStyle';
 
 const Top = (navigation) => {
     const [userValues, setUserValues] = useState({
