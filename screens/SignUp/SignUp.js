@@ -66,7 +66,8 @@ const SignUp = ({navigation}) => {
                     <Input 
                         style={signUpStyle.textInput} 
                         header="DNI" 
-                        placeHolder="DNI" 
+                        placeHolder="DNI"  
+                        isLogged={false} 
                         onChange={(event) => {
                             setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
                         }
@@ -75,70 +76,80 @@ const SignUp = ({navigation}) => {
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Nombre(s)" 
-                        placeHolder="Nombre(s)" 
+                        placeHolder="Nombre(s)"  
+                        isLogged={false} 
                         value={userValues.firstname}
                         onChange={(event) => setUserValues({ ...userValues, 'firstname': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Apellido(s)" 
-                        placeHolder="Apellido(s)" 
+                        placeHolder="Apellido(s)"  
+                        isLogged={false} 
                         value={userValues.lastname}
                         onChange={(event) => setUserValues({ ...userValues, 'lastname': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Fecha de nacimiento" 
-                        placeHolder="Fecha de nacimiento" 
+                        placeHolder="Fecha de nacimiento"  
+                        isLogged={false} 
                         value={userValues.birthDate}
                         onChange={(event) => setUserValues({ ...userValues, 'birthDate': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Sexo" 
-                        placeHolder="Sexo" 
+                        placeHolder="Sexo"  
+                        isLogged={false} 
                         value={userValues.gender}
                         onChange={(event) => setUserValues({ ...userValues, 'gender': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Municipio" 
-                        placeHolder="Municipio" 
+                        placeHolder="Municipio"  
+                        isLogged={false} 
                         value={userValues.municipality}
                         onChange={(event) => setUserValues({ ...userValues, 'municipality': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Estado" 
-                        placeHolder="Estado" 
+                        placeHolder="Estado"  
+                        isLogged={false} 
                         value={userValues.state}
                         onChange={(event) => setUserValues({ ...userValues, 'state': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Calle" 
-                        placeHolder="Calle" 
+                        placeHolder="Calle"  
+                        isLogged={false} 
                         value={userValues.street}
                         onChange={(event) => setUserValues({ ...userValues, 'street': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Número" 
-                        placeHolder="#" 
+                        placeHolder="#"  
+                        isLogged={false} 
                         value={userValues.number}
                         onChange={(event) => setUserValues({ ...userValues, 'number': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Colonia" 
-                        placeHolder="Colonia" 
+                        placeHolder="Colonia"  
+                        isLogged={false} 
                         value={userValues.neighbor}
                         onChange={(event) => setUserValues({ ...userValues, 'neighbor': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Código Postal" 
-                        placeHolder="Código Postal" 
+                        placeHolder="Código Postal"  
+                        isLogged={false} 
                         value={userValues.zip}
                         onChange={(event) => setUserValues({ ...userValues, 'zip': event.nativeEvent.text })}
                     /> 
@@ -152,21 +163,24 @@ const SignUp = ({navigation}) => {
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Username" 
-                        placeHolder="Username" 
+                        placeHolder="Username"  
+                        isLogged={false} 
                         value={userValues.username}
                         onChange={(event) => setUserValues({ ...userValues, 'username': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Password" 
-                        placeHolder="Password" 
+                        placeHolder="Password"  
+                        isLogged={false} 
                         value={userValues.password}
                         onChange={(event) => setUserValues({ ...userValues, 'password': event.nativeEvent.text })}
                     /> 
                     <Input 
                         style={signUpStyle.textInput} 
                         header="Verificar password" 
-                        placeHolder="Verificar password" 
+                        placeHolder="Verificar password"  
+                        isLogged={false} 
                         value={userValues.repeatPassword}
                         onChange={(event) => setUserValues({ ...userValues, 'repeatPassword': event.nativeEvent.text })}
                     /> 

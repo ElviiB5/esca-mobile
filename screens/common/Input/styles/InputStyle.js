@@ -15,6 +15,17 @@ const inputStyle = StyleSheet.create({
         paddingLeft: 20,
         fontSize: 17,
         marginBottom: 15
+    },
+    loggedtextInput: {
+        height: 70,
+        borderBottomWidth: 1,
+        borderColor: '#b5b5b5',
+        borderRadius: 25,
+        marginVertical: -5,
+        borderRadius: 5,
+        paddingLeft: 20,
+        fontSize: 20,
+        marginBottom: 20
     }
 })
 

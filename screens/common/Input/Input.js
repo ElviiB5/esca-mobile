@@ -3,14 +3,18 @@ import { Text, TextInput, View } from 'react-native';
 
 import { inputStyle } from './styles/InputStyle';
 
-const Input = ({header, placeHolder, onChange, value}) => {
+const Input = ({header, placeHolder, onChange, value, isLogged = true}) => {
     return (
         <View>
             <Text style={inputStyle.header} >{header}</Text>
             <TextInput 
-                style={inputStyle.textInput}
+                style={
+                    isLogged ? inputStyle.loggedtextInput : inputStyle.textInput
+                }
                 placeholder={placeHolder}
-                placeholderTextColor={"#B1B2FF"}
+                placeholderTextColor={
+                    isLogged ? "#AAC4FF" : "#B1B2FF"
+                }
                 onChange={onChange}
                 value={value}
             />

@@ -54,10 +54,11 @@ const Login = ({navigation}) => {
                     <Text style={loginStyle.title}>Inicio de sesión</Text>
                 </View>
                 <View style={loginStyle.inputs}>
-                    <Input 
+                    <Input  
                         style={loginStyle.textInput} 
                         header="Username" 
-                        placeHolder="Username" 
+                        placeHolder="Username"
+                        isLogged={false} 
                         onChange={(event) => {
                             setUsername(event.nativeEvent.text)}
                         }
@@ -66,7 +67,8 @@ const Login = ({navigation}) => {
                     <Input 
                         style={loginStyle.textInput} 
                         header="Password" 
-                        placeHolder="Password" 
+                        placeHolder="Password"
+                        isLogged={false} 
                         onChange={(event) => {
                             setPassword(event.nativeEvent.text)}
                         }
