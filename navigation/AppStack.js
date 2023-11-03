@@ -102,6 +102,7 @@ const AppStack = () => {
       <Stack.Screen name="TabStack" component={TabStack} />
       <Stack.Screen name="PoliticalPartyInfo" component={PoliticalPartyInfo} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 }
