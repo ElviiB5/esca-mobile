@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, ScrollView, FlatList, View, Button } from 'react-native';
 import PoliticalParty from '../PoliticalParty/PoliticalParty';
 import { commonStyles } from '../commonStyles';
 
-import PoliticalPartiesJson from '../../jsons/PoliticalParties.json'
 import { useDispatch, useSelector } from 'react-redux';
 import { getPartiesFetch } from '../../fetches/PoliticalParties/PoliticalParties';
 
@@ -18,6 +17,7 @@ const PoliticalParties = ({navigation}) => {
     }, [])
 
     console.log("parties",parties)
+
     return (
         <View style={commonStyles.topContainer}>
             {rol === "Administrador" && 
@@ -46,15 +46,16 @@ const PoliticalParties = ({navigation}) => {
                 </View>
 
                 <FlatList 
-                    data={PoliticalPartiesJson}
+                    data={parties}
                     renderItem={({ item }) => <PoliticalParty 
-                                                    name={item.name} 
-                                                    description={item.description} 
-                                                    candidate={item.presidentialCandidate}
+                                                    key={item.politicalPartyId}
+                                                    partyName={item.politicalPartyName} 
+                                                    partyId={item.politicalPartyId}
+                                                    candidate={item.userId}
+                                                    logo={item.logoImgPath}
                                                     navigation={navigation}
                                                     rol={rol} />
                     }
-                    keyExtractor={item => item.politcalPartyId}
                 />
             </View>
         </View>

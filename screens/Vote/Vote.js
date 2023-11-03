@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import PoliticalPartyChoice from './PoliticalPartyChoice/PoliticalPartyChoice';
-import PoliticalPartiesJson from '../../jsons/PoliticalParties.json'
 import { commonStyles } from '../commonStyles';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPartiesFetch } from '../../fetches/PoliticalParties/PoliticalParties';
 
 const Vote = () => {
+    const { token, rol } = useSelector(state => state.authReducer);
+    const { parties } = useSelector(state => state.partiesReducer);
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPartiesFetch(token))
+    }, [])
+
     return (
         <View style={{ marginBottom: 65 }}>
             <View style={{ 
@@ -18,9 +28,8 @@ const Vote = () => {
             </View>
 
             <FlatList 
-                data={PoliticalPartiesJson}
-                renderItem={({ item }) => <PoliticalPartyChoice name={item.name} candidate={item.presidentialCandidate} />}
-                keyExtractor={item => item.politcalPartyId}
+                data={parties}
+                renderItem={({ item }) => <PoliticalPartyChoice key={item.politicalPartyId} name={item.politicalPartyName} candidate={item.userId} />}
             />
         </View>
     )
