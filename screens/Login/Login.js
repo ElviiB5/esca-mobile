@@ -30,9 +30,6 @@ const Login = ({navigation}) => {
             const { data, isLogin} = await dispatch(loginFetch(username, password))
             
             if (isLogin === true){
-                console.log("Username",username)
-                console.log("data.fullName",data.fullName)
-                console.log("data.userType",data.userType)
                 console.log("data.token",data.token)
                 setUsername('')
                 setPassword('')

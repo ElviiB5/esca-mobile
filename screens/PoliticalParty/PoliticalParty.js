@@ -4,6 +4,18 @@ import { commonStyles } from '../commonStyles';
 import { party } from './styles/PoliticalParty';
 
 const PoliticalParty = ({...props}) => {
+    const handleEdit = () => {
+        props.navigation.navigate('PoliticalPartyInfo', {
+            partyName: props.partyName
+        })
+    }
+    
+    const handleMore = () => {
+        props.navigation.navigate('PoliticalPartyInfo', {
+            partyName: props.partyName
+        })
+    }
+
     return (
         <View style={commonStyles.animationView}>
             <View style={party.imageContainter}>
@@ -15,13 +27,7 @@ const PoliticalParty = ({...props}) => {
             <View style={party.textContainer}>
                 <Text style={party.normalText}>
                     <Text style={party.purpleText}>Nombre: </Text>
-                    {props.name}
-                </Text>
-            </View>
-            <View style={party.textContainer}>
-                <Text style={party.normalText}>
-                    <Text style={party.purpleText}>Descripción: </Text>
-                    {props.description}
+                    {props.partyName}
                 </Text>
             </View>
             <View style={party.textContainer}>
@@ -34,7 +40,7 @@ const PoliticalParty = ({...props}) => {
                 <Button 
                     title='Saber más sobre el partido' 
                     color='#B1B2FF' 
-                    onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
+                    onPress={handleMore} 
                 />
             </View>
             {props.rol === "Administrador" && 

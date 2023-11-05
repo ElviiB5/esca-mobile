@@ -5,7 +5,6 @@ import PoliticalPartyPlatform from '../PoliticalPartyPlatform/PoliticalPartyPlat
 import { commonStyles } from '../../commonStyles';
 
 const PoliticalPartyData = ({...props}) => {
-    const address = props.address
     const platforms = props.platforms
 
     return (
@@ -20,7 +19,7 @@ const PoliticalPartyData = ({...props}) => {
                     </Text>
                     <Text style={partyInfo.normalAlignText}>
                         <Text style={partyInfo.blueText}>Domicilio: </Text>
-                        Calle {address.street}, No. {address.number}, Col. {address.neighborhood}, CP: {address.zipCode}
+                        Calle {props.street}, No. {props.number}, Col. {props.neighbor}, CP: {props.zipCode}
                     </Text>
                     <Text style={partyInfo.normalAlignText}>
                         <Text style={partyInfo.blueText}>Teléfono: </Text>
@@ -28,7 +27,7 @@ const PoliticalPartyData = ({...props}) => {
                     </Text>
                     <Text style={partyInfo.normalAlignText}>
                         <Text style={partyInfo.blueText}>Sitio web: </Text>
-                        {props.webSite}
+                        {props.website}
                     </Text>
                 </View>
                 

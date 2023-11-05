@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import PoliticalPartyHeader from './PoliticalPartyHeader/PoliticalPartyHeader';
 import PoliticalPartyData from './PoliticalPartyData/PoliticalPartyData';
 import PoliticalPartyJson from '../../jsons/PoliticalParty.json'
+import { getPartyInfo } from '../../fetches/PoliticalParties/PoliticalParties';
+import { useDispatch, useSelector } from 'react-redux';
 
-const PoliticalPartyInfo = () => {
+const PoliticalPartyInfo = ({ route, navigation }) => {
+    const { token, rol } = useSelector(state => state.authReducer);
+    const { 
+        currentPartyName, 
+        currentCandidateName, 
+        currentProposals, 
+        currentLogo,
+        currentMunicipality,
+        currentState,
+        currentStreet,
+        currentNumber,
+        currentNeighbor,
+        currentZipCode,
+        currentLatitude,
+        currentLongitude,
+        currentWebsite,
+        currentPhone } = useSelector(state => state.partiesReducer);
+
+    const { partyName } = route.params
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPartyInfo(token, partyName))
+    }, [])
+
     return (
         <View>
             <PoliticalPartyHeader 
-                name={PoliticalPartyJson.name} 
-                candidate={PoliticalPartyJson.presidentialCandidate} 
+                name={currentPartyName} 
+                logo={currentLogo}
+                candidate={currentCandidateName} 
             />
             
             <View style={{
@@ -21,10 +49,17 @@ const PoliticalPartyInfo = () => {
             <View style={{ marginTop: 20 }}>
                 <PoliticalPartyData
                     register={PoliticalPartyJson.registerDate}
-                    address={PoliticalPartyJson.address}
-                    phone={PoliticalPartyJson.phone}
-                    webSite={PoliticalPartyJson.webSite}
-                    platforms={PoliticalPartyJson.platforms}
+                    municipality={currentMunicipality}
+                    state={currentState}
+                    street={currentStreet}
+                    number={currentNumber}
+                    neighbor={currentNeighbor}
+                    zipCode={currentZipCode}
+                    latitud={currentLatitude}
+                    longitud={currentLongitude}
+                    phone={currentPhone}
+                    website={currentWebsite}
+                    platforms={PoliticalPartyJson.platforms} //currentProposals???
                 />
             </View>
 
