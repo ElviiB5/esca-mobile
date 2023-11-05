@@ -35,9 +35,9 @@ const Top = (props) => {
                     placeHolder="Username"
                     isLogged={true}  
                     onChange={(event) => {
-                    setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                    setUserValues({ ...userValues, 'username': event.nativeEvent.text })}
                     }
-                    value={userValues.dni}
+                    value={userValues.username}
                     /> 
                 </View>  
                 <View style={EditProfileStyles.inputs}>
@@ -47,9 +47,9 @@ const Top = (props) => {
                         placeHolder="New Password"
                         isLogged={true} 
                         onChange={(event) => {
-                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                            setUserValues({ ...userValues, 'password': event.nativeEvent.text })}
                         }
-                        value={userValues.dni}
+                        value={userValues.password}
                     /> 
                 </View> 
                 <View style={EditProfileStyles.inputs}>
@@ -59,9 +59,9 @@ const Top = (props) => {
                         placeHolder="Confirma Password"
                         isLogged={true} 
                         onChange={(event) => {
-                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                            setUserValues({ ...userValues, 'repeatPassword': event.nativeEvent.text })}
                         }
-                        value={userValues.dni}
+                        value={userValues.repeatPassword}
                     /> 
                 </View>
                 <View style={EditProfileStyles.button}>

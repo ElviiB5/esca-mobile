@@ -42,7 +42,7 @@ const PoliticalParty = ({...props}) => {
                     <Button 
                         title='Editar' 
                         color='#FBECB2' 
-                        onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
+                        onPress={() => props.navigation.navigate('Edit_PoliticalParties')} 
                     />
                 </View>
             }

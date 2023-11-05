@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
-
 import { inputStyle } from './styles/InputStyle';
 
 const Input = ({header, placeHolder, onChange, value, isLogged = true}) => {
