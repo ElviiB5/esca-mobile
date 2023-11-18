@@ -2,6 +2,7 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAIL = 'GET_USER_FAIL';
+export const SET_LOGOUT = 'SET_LOGOUT';
 
 const initialState = {
     permissions: [],
@@ -78,6 +79,28 @@ function authReducer(state = initialState, action) {
                 latitude: undefined,
                 longitude: undefined,
             };
+        case SET_LOGOUT:
+            return {
+                ...state,
+                permissions: [],
+                dni: undefined,
+                userName: undefined,
+                firstName: undefined,
+                lastName: undefined,
+                fullName: undefined,
+                genderName: undefined,
+                birth: undefined,
+                municipality: undefined,
+                state: undefined,
+                street: undefined,
+                number: undefined,
+                neighbor: undefined,
+                zipCode: undefined,
+                latitude: undefined,
+                longitude: undefined,
+                rol: undefined,
+                token: null,
+            }
         default:
             return state;
     }

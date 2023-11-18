@@ -5,10 +5,12 @@ import { commonStyles } from '../commonStyles';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPartiesFetch } from '../../fetches/PoliticalParties/PoliticalParties';
+import LottieView from "lottie-react-native";
 
 const PoliticalParties = ({navigation}) => {
     const { token, rol } = useSelector(state => state.authReducer);
     const { parties } = useSelector(state => state.partiesReducer);
+    const { isLoading } = useSelector(state => state.basicReducer);
 
     const dispatch = useDispatch()
 
@@ -19,6 +21,10 @@ const PoliticalParties = ({navigation}) => {
     console.log("parties",parties)
 
     return (
+        <>
+        {isLoading ? 
+        <LottieView source={require("../../assets/loader.json")} autoPlay loop />
+        :
         <View style={commonStyles.topContainer}>
             {rol === "Administrador" && 
                 <View style={{ width: 340, marginTop: 10 }}>
@@ -59,6 +65,8 @@ const PoliticalParties = ({navigation}) => {
                 />
             </View>
         </View>
+        }
+    </>
     )
 }
 

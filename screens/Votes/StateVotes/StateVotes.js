@@ -7,13 +7,11 @@ import { BarChart } from 'react-native-chart-kit';
 const StateVotes = (props) => {
     const data = {
         labels: props.politicalParties,
-        datasets: props.votesArray
-        // labels: ["Party1", "Party2", "Party3", "Party4", "Party5", "Party6"],
-        // datasets: [
-        //   {
-        //     data: [20, 45, 28, 80, 99, 43]
-        //   }
-        // ]
+        datasets: [
+          {
+            data: props.votesArray
+          }
+        ]
       };
 
     const chartConfig = {

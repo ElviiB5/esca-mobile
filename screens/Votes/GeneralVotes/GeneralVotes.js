@@ -1,14 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import { votes } from '../styles/Votes';
 import { BarChart, PieChart, ProgressChart } from 'react-native-chart-kit';
 
-const GeneralVotes = () => {
-    const data = {
-      labels: ["Swim", "Bike", "Run"],
-      data: [0.4, 0.6, 0.8]
-    };
+const GeneralVotes = ({ data = [] }) => {
+  const getRandomPinkColor = () => {
+    var green = Math.floor(Math.random() * 256);
+    
+    var red = Math.floor(Math.random() * 256);
+    var blue = Math.floor(Math.random() * 256);
+    
+    red = Math.max(red, 200);
+    blue = Math.min(blue, 150);
+    
+    return "rgb(" + red + "," + green + "," + blue + ")";
+  }
+
+    const generalData = data.map((party) => {
+      const color = getRandomPinkColor()
+      return {
+        name: party.politicalParty,
+        count: party.votes,
+        color: color,
+        legendFontColor: color,
+        legendFontSize: 15
+      }
+    })
 
     const chartConfig = {
         backgroundGradientFrom: "#EEF1FF",
@@ -23,14 +41,15 @@ const GeneralVotes = () => {
     return (
         <View style={votes.container}>
           <Text style={votes.purpleText}>Conteo Nacional</Text>
-          <ProgressChart
-            data={data}
+          <PieChart
+            data={generalData}
             width={350}
             height={220}
-            strokeWidth={16}
-            radius={32}
             chartConfig={chartConfig}
-            hideLegend={false}
+            accessor={"count"}
+            backgroundColor={"transparent"}
+            paddingLeft={"15"}
+            absolute
           />
         </View>
     )

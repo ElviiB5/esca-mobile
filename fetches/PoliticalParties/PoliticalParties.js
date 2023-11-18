@@ -6,9 +6,16 @@ import {
   SET_CURRENT_PARTY_SUCCESS,
   SET_CURRENT_PARTYS_FAIL,
 } from "../../redux/reducers/partiesReducer";
+import { SET_LOADING } from "../../redux/reducers/basicReducer";
 
 export const getPartiesFetch = (token) => async (dispatch) => {
     console.log("getPartiesFetch token", token)
+
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    });
+
     try {
       const { data } = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetPoliticalParty`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -30,6 +37,11 @@ export const getPartiesFetch = (token) => async (dispatch) => {
           type: SET_PARTIES_FAIL
       });
       return { data: undefined, setPartiesSuccess: false}
+    } finally {
+      dispatch({
+        type: SET_LOADING,
+        payload: false
+      });
     }
 }
 

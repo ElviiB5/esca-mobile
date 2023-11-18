@@ -1,10 +1,20 @@
 import axios from "axios";
 import { BASIC_URL } from '@env';
-import { GET_USER_FAIL, GET_USER_SUCCESS, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "../../redux/reducers/authReducers";
+import { GET_USER_FAIL, GET_USER_SUCCESS, SET_LOGOUT, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "../../redux/reducers/authReducers";
+import { SET_LOADING } from "../../redux/reducers/basicReducer";
 
 export const loginFetch = (username, password) => async (dispatch) => {
     console.log("loginFetch username", username, "password", password)
+
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    });
+  
     try {
+      dispatch({
+        type: SET_LOGOUT,
+      });
       const form = new FormData()
       form.append("DniOrUserName",username)
       form.append("Password",password)
@@ -37,12 +47,23 @@ export const loginFetch = (username, password) => async (dispatch) => {
           type: USER_LOGIN_FAIL
       });
       return { data: undefined, isLogin: false}
-    }
+    } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
+  }
 }
 
 export const getProfileInfo = (token, dni) => async (dispatch) => {
   console.log("getProfileInfo token", token)
   console.log("getProfileInfo dni", dni)
+  
+  dispatch({
+    type: SET_LOADING,
+    payload: true
+  });
+
   try {
     const { data } = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetUsers`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -104,5 +125,30 @@ export const getProfileInfo = (token, dni) => async (dispatch) => {
         type: GET_USER_FAIL
     });
     return { data: undefined, setUserSuccess: false}
+  } finally {
+      dispatch({
+        type: SET_LOADING,
+        payload: false
+      });
+    }
+}
+
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: SET_LOADING,
+    payload: true
+  });
+
+  try {
+    dispatch({
+      type: SET_LOGOUT,
+    });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
   }
 }
