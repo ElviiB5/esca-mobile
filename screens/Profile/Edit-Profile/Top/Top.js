@@ -2,25 +2,56 @@ import React, {useState} from 'react';
 import { Button, Text, View } from 'react-native';
 import Input from '../../../common/Input/Input';
 import { EditProfileStyles } from '../styles/EditProfileStyle';
+import { useDispatch } from 'react-redux';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
-const Top = (props) => {
+const Top = ({userInfo, ...props}) => {
+    const dispatch = useDispatch()
+
     const [userValues, setUserValues] = useState({
-        username: '',
-        password: '',
-        repeatPassword: '',
-        dni: '',
-        firstname: '',
-        lastname: '',
-        birthDate: '',
-        gender: '',
-        municipality: '',
-        state: '',
-        street: '',
-        number: '',
-        neighbor: '',
-        zip: '',
-        userType: ''
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
     })
+
+    const handleChangeAuthCredentials = () => {
+        if (newPassword === confirmPassword) {
+            const { authUpdated } = dispatch(changeAuth(userInfo.username, currentPassword, newPassword))
+            if (authUpdated) {
+                showMessage({
+                  message: "CONFIRMACIÓN",
+                  description: "Se han actualizado las credenciales!",
+                  type: "success",
+                });
+
+                // props.passedNavgation.navigate('Profile')
+            } else {
+                showMessage({
+                  message: "ERROR",
+                  description: "Ocurrió un error, intenta más tarde",
+                  type: "danger",
+                });
+            }
+        } else {
+            showMessage({
+              message: "ERROR",
+              description: "Las contraseñas no concuerdan",
+              type: "danger",
+            });
+        }
+    }
+
+    const handleButtonClick = () => {
+        if (currentPassword !== "" && newPassword !== "" && confirmPassword !== "") {
+            handleChangeAuthCredentials()
+        } else {
+            showMessage({
+              message: "ERROR",
+              description: "Completa todos los campos",
+              type: "danger",
+            });
+        }
+    }
 
     return (
         <View >
@@ -28,44 +59,47 @@ const Top = (props) => {
                 <View style={EditProfileStyles.titleView}>
                     <Text style={EditProfileStyles.title}>Editar perfil</Text>
                 </View>
-                <View style={EditProfileStyles.inputs}>
-                    <Input 
-                    style={EditProfileStyles.textInput} 
-                    header="Username" 
-                    placeHolder="Username"
-                    isLogged={true}  
-                    onChange={(event) => {
-                    setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
-                    }
-                    value={userValues.dni}
-                    /> 
-                </View>  
+                <View style={EditProfileStyles.titleView}>
+                    <Text style={EditProfileStyles.title}>{userInfo.username}</Text>
+                </View>
                 <View style={EditProfileStyles.inputs}>
                     <Input 
                         style={EditProfileStyles.textInput} 
-                        header="New Password" 
-                        placeHolder="New Password"
+                        header="Contrseña actual" 
+                        placeHolder="Contraseña actual"
                         isLogged={true} 
                         onChange={(event) => {
-                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                            setUserValues({ ...userValues, 'currentPassword': event.nativeEvent.text })}
                         }
-                        value={userValues.dni}
+                        value={userValues.currentPassword}
                     /> 
                 </View> 
                 <View style={EditProfileStyles.inputs}>
                     <Input 
                         style={EditProfileStyles.textInput} 
-                        header="Confirma Password" 
-                        placeHolder="Confirma Password"
+                        header="Nueva contraseña" 
+                        placeHolder="Nueva contraseña"
                         isLogged={true} 
                         onChange={(event) => {
-                            setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
+                            setUserValues({ ...userValues, 'newPassword': event.nativeEvent.text })}
                         }
-                        value={userValues.dni}
+                        value={userValues.newPassword}
+                    /> 
+                </View> 
+                <View style={EditProfileStyles.inputs}>
+                    <Input 
+                        style={EditProfileStyles.textInput} 
+                        header="Confrima contraseña" 
+                        placeHolder="Confirma contraseña"
+                        isLogged={true} 
+                        onChange={(event) => {
+                            setUserValues({ ...userValues, 'confirmPassword': event.nativeEvent.text })}
+                        }
+                        value={userValues.confirmPassword}
                     /> 
                 </View>
                 <View style={EditProfileStyles.button}>
-                    <Button title='CAMBIAR' color='#B1B2FF' onPress={() => props.passedNavgation.navigate('Profile')}/>
+                    <Button title='CAMBIAR' color='#B1B2FF' onPress={handleButtonClick}/>
                 </View>
             </View>            
         </View> 

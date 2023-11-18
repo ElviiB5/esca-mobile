@@ -3,18 +3,20 @@ import { ScrollView, View } from 'react-native';
 import Top from './Top/Top';
 import Bottom from './Bottom/Bottom';
 
-const EditProfile = ({navigation}) => {
+const EditProfile = ({route, navigation}) => {
+    const { userInfo } = route.params
+
     return(
         <ScrollView>
-            <Top passedNavgation={navigation} />
+            <Top passedNavgation={navigation} userInfo={userInfo} />
             <View style={{
                 marginTop: -2,
                 borderBottomColor: '#AAC4FF',
                 borderBottomWidth: 2,
                 marginBottom: -10}}></View>
-            <Bottom passedNavgation={navigation}/>
+            <Bottom passedNavgation={navigation} userInfo={userInfo} />
         </ScrollView> 
     )
-    }
+}
 
-    export default EditProfile;
+export default EditProfile;

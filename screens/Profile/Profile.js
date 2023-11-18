@@ -26,15 +26,23 @@ const Profile = ({navigation}) => {
         token, 
         rol } = useSelector(state => state.authReducer);
 
-    console.log("dni",dni)
-    console.log("userName",userName)
-    console.log("fullName",fullName)
-    console.log("genderName",genderName)
-    console.log("birth",birth)
-    console.log("municipality",municipality)
-    console.log("street",street)
-    console.log("number",number)
-    console.log("zipCode",zipCode)
+    const userInfo = { 
+        dni, 
+        userName, 
+        fullName,
+        genderName,
+        birth,
+        municipality,
+        state,
+        street,
+        number,
+        neighbor,
+        zipCode,
+        latitude,
+        longitude,
+        token, 
+        rol 
+    }
 
     const dispatch = useDispatch()
 
@@ -79,7 +87,7 @@ const Profile = ({navigation}) => {
                 </View>
             </View>
             <View style={profile.button}>
-                <Button title='EDITAR' color='#B1B2FF' onPress={() => navigation.navigate('EditProfile')} />
+                <Button title='EDITAR' color='#B1B2FF' onPress={() => navigation.navigate('EditProfile', userInfo)} />
             </View>
             <View style={profile.button}>
                 <Button title='Cerrar Sesión' color='#B1B2FF' onPress={handleLogout} />

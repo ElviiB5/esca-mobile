@@ -4,35 +4,48 @@ import { EditProfileStyles } from "../styles/EditProfileStyle";
 import Input from "../../../common/Input/Input";
 
 
-const Bottom = (props) =>{ 
+const Bottom = ({userInfo, ...props}) =>{ 
     const [userValues, setUserValues] = useState({
-        dni: '',
-        firstname: '',
-        lastname: '',
-        birthDate: '',
-        gender: '',
-        municipality: '',
-        state: '',
-        street: '',
-        number: '',
-        neighbor: '',
-        zip: '',
-        userType: ''
+        username: userInfo.username,
+        password: userInfo.password,
+        repeatPassword: userInfo.repeatPassword,
+        dni: userInfo.dni,
+        firstname: userInfo.firstname,
+        lastname: userInfo.lastname,
+        birthDate: userInfo.birthDate,
+        gender: userInfo.gender,
+        municipality: userInfo.municipality,
+        state: userInfo.state,
+        street: userInfo.street,
+        number: userInfo.number,
+        neighbor: userInfo.neighbor,
+        zip: userInfo.zip,
+        userType: userInfo.userType
     })
+
+    const handleUpdateUserInfo = () => {
+        const { authUpdated } = dispatch(changeUserInfo())
+
+        if (authUpdated) {
+            showMessage({
+              message: "CONFIRMACIÓN",
+              description: "Se han actualizado las credenciales!",
+              type: "success",
+            });
+            
+            props.passedNavgation.navigate('Profile')
+        } else {
+            showMessage({
+              message: "ERROR",
+              description: "Ocurrió un error, intenta más tarde",
+              type: "danger",
+            });
+        }
+    }
+
+
     return(
         <View style={EditProfileStyles.mainView}>
-            <View style={EditProfileStyles.inputs}>
-                <Input 
-                    style={EditProfileStyles.textInput} 
-                    header="DNI" 
-                    placeHolder="DNI"  
-                    isLogged={true} 
-                    onChange={(event) => {
-                        setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
-                    }
-                    value={userValues.dni}
-                /> 
-            </View>
             <View style={EditProfileStyles.inputs}>
                 <Input 
                     style={EditProfileStyles.textInput} 
@@ -134,7 +147,7 @@ const Bottom = (props) =>{
                 /> 
             </View>
             <View style={EditProfileStyles.button}>
-            <Button title='CAMBIAR' color='#B1B2FF' onPress={() => props.passedNavgation.navigate('Profile')}/>
+            <Button title='CAMBIAR' color='#B1B2FF' onPress={handleUpdateUserInfo}/>
         </View>
     </View> 
     )
