@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import StateVotes from './StateVotes/StateVotes';
 import GeneralVotes from './GeneralVotes/GeneralVotes'
 import EvilIcons from '@expo/vector-icons/EvilIcons'

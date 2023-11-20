@@ -20,6 +20,12 @@ export const getPartiesFetch = (token) => async (dispatch) => {
       const { data } = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetPoliticalParty`, {
         headers: { Authorization: `Bearer ${token}` }
       });
+      data.map((item) => {
+        return {
+          ...item,
+          image: `data:image/png;base64,${data.LogoImg}`
+        }
+      })
 
       console.log("PoliticalParties.getPartiesFetch data",data);
       

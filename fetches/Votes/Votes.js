@@ -13,7 +13,7 @@ export const getVotes = () => async (dispatch) => {
     });
   
     try {
-      const result = await axios.get(`${BASIC_URL}/ManageGeneralElectionsInfo/GetVote`);
+      const result = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetVotes`);
       
       dispatch({
         type: SET_VOTES_SUCCESS,

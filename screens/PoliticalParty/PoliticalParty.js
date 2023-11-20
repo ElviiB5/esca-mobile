@@ -3,13 +3,7 @@ import { Button, Image, ScrollView, Text, View } from 'react-native';
 import { commonStyles } from '../commonStyles';
 import { party } from './styles/PoliticalParty';
 
-const PoliticalParty = ({...props}) => {
-    const handleEdit = () => {
-        props.navigation.navigate('PoliticalPartyInfo', {
-            partyName: props.partyName
-        })
-    }
-    
+const PoliticalParty = ({...props}) => {    
     const handleMore = () => {
         props.navigation.navigate('PoliticalPartyInfo', {
             partyName: props.partyName
@@ -20,7 +14,7 @@ const PoliticalParty = ({...props}) => {
         <View style={commonStyles.animationView}>
             <View style={party.imageContainter}>
                 <Image
-                    source={require('../../assets/purple-icon.jpg')}
+                    source={props.image}
                     style={{width: 250, height: 100}}
                 />
             </View>
@@ -48,7 +42,7 @@ const PoliticalParty = ({...props}) => {
                     <Button 
                         title='Editar' 
                         color='#FBECB2' 
-                        onPress={() => props.navigation.navigate('PoliticalPartyInfo')} 
+                        onPress={() => props.navigation.navigate('Edit_PoliticalParties')} 
                     />
                 </View>
             }

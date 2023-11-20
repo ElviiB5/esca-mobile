@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const signUpStyle = StyleSheet.create({
+const createAdminUserStyle = StyleSheet.create({
     mainView: {
         flexDirection: "column",
         alignContent: "center",
@@ -32,7 +32,7 @@ const signUpStyle = StyleSheet.create({
     },
     title: {
         color: '#B1B2FF',
-        fontSize: 32,
+        fontSize: 28,
         marginRight: 9
     },
     button: {
@@ -40,9 +40,7 @@ const signUpStyle = StyleSheet.create({
         width: 160,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 25,
-        backgroundColor: '#B1B2FF',
-        marginTop: 15
+        marginTop: 8
     },
     textButton: {
         color: "#ffffff",
@@ -78,4 +76,4 @@ const signUpStyle = StyleSheet.create({
     }
 })
 
-export { signUpStyle }
+export { createAdminUserStyle }

@@ -3,8 +3,11 @@ import React from 'react';
 import PoliticalParties from '../screens/PoliticalParties/PoliticalParties'
 import PoliticalPartyInfo from '../screens/PoliticalPartyInfo/PoliticalPartyInfo'
 import EditProfile from '../screens/Profile/Edit-Profile/EditProfile';
+import CreateAdminUser from '../screens/CreateAdminUser/CreateAdminUser';
+import CreateParty from '../screens/PoliticalParty/CreateParty/CreateParty'
 import Vote from '../screens/Vote/Vote'
 import Profile from '../screens/Profile/Profile'
+import Edit_PoliticalParties from '../screens/PoliticalParties/Edit-PiliticalParties/Edit_PoliticalParties';
 import Home from '../screens/Home/Home';
 import Votes from '../screens/Votes/Votes';
 import FontAwesome from '@expo/vector-icons/FontAwesome'
@@ -103,6 +106,10 @@ const AppStack = () => {
       <Stack.Screen name="PoliticalPartyInfo" component={PoliticalPartyInfo} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Edit_PoliticalParties" component={Edit_PoliticalParties} />
+      <Stack.Screen name="PoliticalParties" component={PoliticalParties} />
+      <Stack.Screen name="CreateAdminUser" component={CreateAdminUser} />
+      <Stack.Screen name="CreateParty" component={CreateParty} />
     </Stack.Navigator>
   );
 }

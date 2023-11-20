@@ -17,15 +17,15 @@ const inputStyle = StyleSheet.create({
         marginBottom: 15
     },
     loggedtextInput: {
-        height: 70,
+        height: 50,
         borderBottomWidth: 1,
         borderColor: '#b5b5b5',
         borderRadius: 25,
-        marginVertical: -5,
+        marginVertical: -3,
         borderRadius: 5,
         paddingLeft: 20,
         fontSize: 20,
-        marginBottom: 20
+        marginBottom: 10
     }
 })
 

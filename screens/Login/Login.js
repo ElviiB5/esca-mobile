@@ -3,15 +3,11 @@ import { Button, Text, TouchableOpacity, View } from 'react-native';
 
 import { loginStyle } from './styles/LoginStyle';
 import Input from '../common/Input/Input';
-import Ionicons from '@expo/vector-icons/Ionicons'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import EvilIcons from '@expo/vector-icons/EvilIcons'
-import AntDesign from '@expo/vector-icons/AntDesign'
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginAuth } from '../../redux/actions/authActions';
 import { loginFetch } from '../../fetches/Auth/Auth';
 import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import LottieView from "lottie-react-native";
 
 const Login = ({navigation}) => {

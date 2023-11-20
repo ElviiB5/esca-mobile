@@ -31,7 +31,7 @@ const PoliticalParties = ({navigation}) => {
                     <Button 
                         title='Crear Partido Político' 
                         color='#E95793' 
-                        onPress={() => navigation.navigate('PoliticalPartyInfo')} 
+                        onPress={() => navigation.navigate('CreateParty')} 
                     />
                 </View>
             }

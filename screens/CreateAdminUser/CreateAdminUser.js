@@ -4,15 +4,17 @@ import { Button, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Input from '../common/Input/Input';
 import EvilIcons from '@expo/vector-icons/EvilIcons'
 import RNPickerSelect from 'react-native-picker-select';
-import { signUpStyle } from './styles/SignUpStyle';
+import { createAdminUserStyle } from './styles/CreateAdminUser';
 import { commonStyles } from '../commonStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import FlashMessage, { showMessage } from "react-native-flash-message";
-import { createVoterUser, loginFetch } from '../../fetches/Auth/Auth';
+import { createAdminUser, createVoterUser, loginFetch } from '../../fetches/Auth/Auth';
 import { getStatesAndMunicipalities } from '../../fetches/General/General';
 
-const SignUp = ({navigation}) => {
-    const { states, municipalities } = useSelector(state => state.generalReducer);
+const CreateAdminUser = ({navigation}) => {
+  const { token } = useSelector(state => state.authReducer);
+  const { states, municipalities } = useSelector(state => state.generalReducer);
+
     const [userValues, setUserValues] = useState({
         dni: '',
         firstname: '',
@@ -31,6 +33,14 @@ const SignUp = ({navigation}) => {
         password: '',
         confirmPassword: '',
     })
+
+    useEffect(() => {
+      fetchData()
+    }, [])
+
+    const fetchData = async () => {
+      await dispatch(getStatesAndMunicipalities())
+    }
 
     const dispatch = useDispatch()
 
@@ -54,25 +64,13 @@ const SignUp = ({navigation}) => {
         })
     }
 
-    useEffect(() => {
-      fetchData()
-    }, [])
-
-    const fetchData = async () => {
-      await dispatch(getStatesAndMunicipalities())
-    }
-
-    const handleLogin = async () => {
-        console.log("Here!",userValues)
+    const handleCreateAdmin = async () => {
         if(userValues.password === userValues.confirmPassword) {
             console.log(userValues)
             console.log("Has access!")
-            const { code, userCreatedSuccessful } = await dispatch(createVoterUser(userValues))
+            const { code, userCreatedSuccessful } = await dispatch(createAdminUser(userValues, token))
 
-            console.log("code!!",code)
             if (userCreatedSuccessful && code === 1) {
-                await dispatch(loginFetch(userValues.username, userValues.password))
-
                 clearValues()
                 showMessage({
                   message: "PERFECTO!",
@@ -87,7 +85,6 @@ const SignUp = ({navigation}) => {
                 });
             }
         } else {
-            console.log("yaas")
             showMessage({
               message: "ERROR",
               description: "Credenciales incorrectas",
@@ -99,72 +96,65 @@ const SignUp = ({navigation}) => {
     return (
         <View>
         <ScrollView>
-            <View style={signUpStyle.mainView}>
-                <View style={signUpStyle.titleView}>
-                    <EvilIcons name='arrow-right' size={52} color={"#B1B2FF"}/>
-                    <Text style={signUpStyle.title}>Inicio de sesión</Text>
+            <View style={createAdminUserStyle.mainView}>
+                <View style={createAdminUserStyle.titleView}>
+                    <EvilIcons name='user' size={52} color={"#B1B2FF"}/>
+                    <Text style={createAdminUserStyle.title}>Registro de administrador</Text>
                 </View>
-                <View style={signUpStyle.inputs}>
+                <View style={createAdminUserStyle.inputs}>
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Username" 
                         placeHolder="Username"
-                        isLogged={false} 
                         value={userValues.username}
                         onChange={(event) => setUserValues({ ...userValues, 'username': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Password" 
                         placeHolder="Password"  
-                        isLogged={false} 
                         value={userValues.password}
                         onChange={(event) => setUserValues({ ...userValues, 'password': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Verificar password" 
                         placeHolder="Verificar password"  
-                        isLogged={false} 
                         value={userValues.confirmPassword}
                         onChange={(event) => setUserValues({ ...userValues, 'confirmPassword': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="DNI" 
                         placeHolder="DNI"  
-                        isLogged={false} 
                         onChange={(event) => {
                             setUserValues({ ...userValues, 'dni': event.nativeEvent.text })}
                         }
                         value={userValues.dni}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Nombre(s)" 
                         placeHolder="Nombre(s)"  
-                        isLogged={false} 
                         value={userValues.firstname}
                         onChange={(event) => setUserValues({ ...userValues, 'firstname': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Apellido(s)" 
                         placeHolder="Apellido(s)"  
-                        isLogged={false} 
                         value={userValues.lastname}
                         onChange={(event) => setUserValues({ ...userValues, 'lastname': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Fecha de nacimiento" 
                         placeHolder="aaaa-mm-dd"  
-                        isLogged={false} 
                         value={userValues.birthDate}
                         onChange={(event) => setUserValues({ ...userValues, 'birthDate': event.nativeEvent.text })}
                     /> 
                     <View>
-                        <Text style={signUpStyle.text} >Sexo</Text>
+                        <Text style={createAdminUserStyle.text} >Sexo</Text>
                         <RNPickerSelect
                             onValueChange={(value) => setUserValues({ ...userValues, 'gender': value })}
                             items={[
@@ -174,7 +164,7 @@ const SignUp = ({navigation}) => {
                         />
                     </View>
                     <View>
-                        <Text style={signUpStyle.text} >Estado</Text>
+                        <Text style={createAdminUserStyle.text} >Estado</Text>
                         <RNPickerSelect
                             onValueChange={(value) => {
                               const selectedState = states.states.find((state) => state.label === value)
@@ -188,66 +178,46 @@ const SignUp = ({navigation}) => {
                         />
                     </View>
                     <View>
-                        <Text style={signUpStyle.text} >Municipio</Text>
+                        <Text style={createAdminUserStyle.text} >Municipio</Text>
                         <RNPickerSelect
                             onValueChange={(value) => setUserValues({ ...userValues, 'municipality': value })}
                             items={userValues.selectedMunicipalities || []}
                         />
                     </View>
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Calle" 
                         placeHolder="Calle"  
-                        isLogged={false} 
                         value={userValues.street}
                         onChange={(event) => setUserValues({ ...userValues, 'street': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Número" 
                         placeHolder="#"  
-                        isLogged={false} 
                         value={userValues.number}
                         onChange={(event) => setUserValues({ ...userValues, 'number': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Colonia" 
                         placeHolder="Colonia"  
-                        isLogged={false} 
                         value={userValues.neighbor}
                         onChange={(event) => setUserValues({ ...userValues, 'neighbor': event.nativeEvent.text })}
                     /> 
                     <Input 
-                        style={signUpStyle.textInput} 
+                        style={createAdminUserStyle.textInput} 
                         header="Código Postal" 
                         placeHolder="Código Postal"  
-                        isLogged={false} 
                         value={userValues.zip}
                         onChange={(event) => setUserValues({ ...userValues, 'zip': event.nativeEvent.text })}
                     /> 
-                    {/* <RNPickerSelect
-                        // onValueChange={(value) => handleUserTypeChange(value)}
-                        items={[
-                            { label: 'Administrador', value: 'Administrador' },
-                            { label: 'Votante', value: 'Votante' },
-                        ]}
-                    /> */}
-                    <TouchableOpacity
-                        style={signUpStyle.button}
-                        onPress={handleLogin}
-                    >
-                        <Text style={signUpStyle.textButton} >Registrarme</Text>
-                    </TouchableOpacity>
                 </View>
-                <View style={signUpStyle.signinText}>
-                    <Text style={signUpStyle.signinAsk}>¿Ya tienes una cuenta?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={signUpStyle.signin}>Inicia sesión</Text>
-                    </TouchableOpacity>
+                <View style={createAdminUserStyle.button}>
+                    <Button title='Crear usuario' color='#B1B2FF' onPress={handleCreateAdmin} />
                 </View>
-                <View style={signUpStyle.slogan}>
-                    <Text style={signUpStyle.sloganText}>Tu voz, tu voto, tu país</Text>
+                <View style={createAdminUserStyle.slogan}>
+                    <Text style={createAdminUserStyle.sloganText}>Tu voz, tu voto, tu país</Text>
                 </View>
             </View>
         </ScrollView>
@@ -255,4 +225,4 @@ const SignUp = ({navigation}) => {
     )
 }
 
-export default SignUp;
+export default CreateAdminUser;

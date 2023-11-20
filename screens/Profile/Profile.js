@@ -82,13 +82,18 @@ const Profile = ({navigation}) => {
             <View style={commonStyles.animationView}>
                 <View>
                     <Text style={profile.contactText}>Nombre de usuario: 
-                        <Text style={commonStyles.normalText}>{userName}</Text>
+                        <Text style={commonStyles.normalText}> {userName}</Text>
                     </Text>
                 </View>
             </View>
             <View style={profile.button}>
                 <Button title='EDITAR' color='#B1B2FF' onPress={() => navigation.navigate('EditProfile', userInfo)} />
             </View>
+            {rol === "Administrador" &&
+            <View style={profile.button}>
+                <Button title='Crear usuario administrador' color='#B1B2FF' onPress={() => navigation.navigate('CreateAdminUser')} />
+            </View>
+            }
             <View style={profile.button}>
                 <Button title='Cerrar Sesión' color='#B1B2FF' onPress={handleLogout} />
             </View>
