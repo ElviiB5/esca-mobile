@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../common/Input/Input";
-import { Button, ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View, Image, TouchableOpacity } from 'react-native';
 import { createPartyStyles } from "./styles/CreateParty";
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { getCandidates } from "../../../fetches/Users/Users";
 import RNPickerSelect from 'react-native-picker-select';
+import * as ImagePicker from 'expo-image-picker';
+import { party } from "../styles/PoliticalParty";
+import { createParty } from "../../../fetches/PoliticalParties/PoliticalParties";
 
 const CreateParty = ({ navigation }) => {
     const { token, rol } = useSelector(state => state.authReducer);
@@ -15,9 +18,7 @@ const CreateParty = ({ navigation }) => {
     const [candidateFirstname, setCandidateFirstname] = useState("")
     const [candidateLastname, setCandidateLastname] = useState("")
     const [candidateBornDate, setCandidateBornDate] = useState("")
-    const [candidateUsername, setCandidateUsername] = useState("")
     const [candidateGender, setCandidateGender] = useState("")
-    const [password, setPassword] = useState("")
     const [municipality, setMunicipality] = useState("")
     const [state, setState] = useState("")
     const [street, setStreet] = useState("")
@@ -28,28 +29,57 @@ const CreateParty = ({ navigation }) => {
     const [phone, setPhone] = useState("")
     const [website, setWebsite] = useState("")
     const [image, setImage] = useState("")
-    const [proposals, setProposals] = useState([])
+    const [proposals, setProposals] = useState([""])
+
+    console.log("image",image)
+    console.log("proposals",proposals)
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getCandidates(token))
-    }, [])
-
     const removeProposal = (index) => {
+      console.log("here")
         const updatedProposals = proposals.filter((_, i) => i !== index);
-        setUserValues(updatedProposals);
+        setProposals(updatedProposals);
     }
 
     const handleCreateParty = () => {
-        const { partyCreated } = dispatch(createParty(token)) //FINISH
+      const newParty = {
+        candidateDNI,
+        candidateFirstname,
+        candidateLastname,
+        candidateBornDate,
+        candidateGender,
+        municipality,
+        state,
+        street,
+        number,
+        neighbor,
+        zip,
+        partyName,
+        phone,
+        website,
+        image,
+        proposals,
+      }
+        const { partyCreated } = dispatch(createParty(newParty, token))
 
         if (partyCreated) {
             navigation.navigate('PoliticalParties')
-        } else {
-            console.log("Didnt work:(")
         }
     }
+
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 2],
+        quality: 1,
+      });
+  
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+      }
+    };
 
   return (
     <ScrollView>
@@ -68,15 +98,11 @@ const CreateParty = ({ navigation }) => {
               value={partyName}
             />
           </View>
-          <View style={createPartyStyles.inputs}>
-            <Input
-              style={createPartyStyles.textInput}
-              header="Logo"
-              placeHolder=".png / .jpg"
-              isLogged={true}
-              onChange={(event) => setImage(event.nativeEvent.text)}
-              value={image}
-            />
+          <View style={createPartyStyles.button}>
+            <Button title='Agregar logo' color='#B1B2FF' onPress={pickImage} />
+            <View style={createPartyStyles.imageContainter}>
+            {image && <Image source={{ uri: image }} style={{ width: 290, height: 150 }} />}
+            </View>
           </View>
           <View style={createPartyStyles.inputs}>
             <Input
@@ -97,24 +123,6 @@ const CreateParty = ({ navigation }) => {
               onChange={(event) => setPhone(event.nativeEvent.text)}
               value={phone}
             />
-          </View>
-          {/* //TODO: Add select to get candidate users - DONE! not tested */}
-          <View style={createPartyStyles.inputs}>
-            <Input
-              style={createPartyStyles.textInput}
-              header="Candidato a la presidencia"
-              placeHolder="Candidato"
-              isLogged={true}
-              onChange={(event) => setCandidateDNI(event.nativeEvent.text)}
-              value={candidateDNI}
-            />
-          </View>
-          <View style={createPartyStyles.inputs}>
-              <Text style={createPartyStyles.text} >Candidato a la presidencia</Text>
-              <RNPickerSelect
-                  onValueChange={(value) => setCandidateDNI(value)}
-                  items={candidates || []}
-              />
           </View>
           <View style={createPartyStyles.titleView}>
             <Text style={createPartyStyles.title}>Dirección del partido</Text>
@@ -180,34 +188,92 @@ const CreateParty = ({ navigation }) => {
             />
           </View>
           <View style={createPartyStyles.inputs}>
-            {proposals.map((proposal, index) => {
+            {proposals.map((proposal, index) => (
+              <View key={index}>
                 <Input
-                style={createPartyStyles.textInput}
-                header={`Propuesta #${index}`}
-                placeHolder={`#${index}`}
-                isLogged={true}
-                onChange={(event) => {
-                    const allProposals = [...proposals]
-                    allProposals[index] = event.nativeEvent.text
-                    setProposals(allProposals)
-                }}
-                value={proposal}
+                  style={createPartyStyles.textInput}
+                  header={`Propuesta #${index + 1}`}
+                  placeHolder={`#${index + 1}`}
+                  isLogged={true}
+                  onChange={(event) => {
+                    const allProposals = [...proposals];
+                    allProposals[index] = event.nativeEvent.text;
+                    setProposals(allProposals);
+                  }}
+                  value={proposal}
                 />
-                {index > 0 && (
-                  <FontAwesome
-                    name="minus"
-                    size={20}
-                    color="red"
-                    onPress={removeProposal}
-                  />
-                )}
-            })}
-            <FontAwesome
-              name="plus"
-              size={20}
-              color="green"
-              onPress={() => setProposals([...proposals, ''])}
+                <FontAwesome
+                  name="minus"
+                  size={40}
+                  color="#F79BD3"
+                  onPress={() => removeProposal(index)}
+                />
+              </View>
+            ))}
+            <TouchableOpacity
+                style={createPartyStyles.proposalsContainer}
+                onPress={() => setProposals([...proposals, ""])}
+                >
+                <Text style={createPartyStyles.blueText}>Agregar propuesta </Text>
+                <FontAwesome
+                  name="plus"
+                  size={40}
+                  color="#AAC4FF"
+                />
+            </TouchableOpacity>
+          </View>
+          <View style={createPartyStyles.titleView}>
+            <Text style={createPartyStyles.title}>Crea al candidato a la presidencia</Text>
+          </View>
+          <View style={createPartyStyles.inputs}>
+            <Input
+              style={createPartyStyles.textInput}
+              header="DNI del candidato"
+              placeHolder="DNI"
+              isLogged={true}
+              onChange={(event) => setCandidateDNI(event.nativeEvent.text)}
+              value={candidateDNI}
             />
+          </View>
+          <View style={createPartyStyles.inputs}>
+            <Input
+              style={createPartyStyles.textInput}
+              header="Nombres del candidato"
+              placeHolder="Nombres"
+              isLogged={true}
+              onChange={(event) => setCandidateFirstname(event.nativeEvent.text)}
+              value={candidateFirstname}
+            />
+          </View>
+          <View style={createPartyStyles.inputs}>
+            <Input
+              style={createPartyStyles.textInput}
+              header="Apellidos del candidato"
+              placeHolder="Apellidos"
+              isLogged={true}
+              onChange={(event) => setCandidateLastname(event.nativeEvent.text)}
+              value={candidateLastname}
+            />
+          </View>
+          <View style={createPartyStyles.inputs}>
+            <Input
+              style={createPartyStyles.textInput}
+              header="Fecha de nacimiento del candidato"
+              placeHolder="yyyy-mm-dd"
+              isLogged={true}
+              onChange={(event) => setCandidateBornDate(event.nativeEvent.text)}
+              value={candidateBornDate}
+            />
+          </View>
+          <View>
+              <Text style={createPartyStyles.purpleText} >Sexo del candidato</Text>
+              <RNPickerSelect
+                  onValueChange={(value) => setCandidateGender(value)}
+                  items={[
+                      { label: 'Femenino', value: 'Femenino' },
+                      { label: 'Masculino', value: 'Masculino' },
+                  ]}
+              />
           </View>
 
           <View style={createPartyStyles.button}>

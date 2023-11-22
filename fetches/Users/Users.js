@@ -18,12 +18,15 @@ export const getCandidates = (token) => async (dispatch) => {
 
       console.log("data",data)
 
-      const formattedData = data.map((candidate) => {
-        return {
-            label: `${candidate.firstName} ${candidate.lastName}`,
-            value: candidate.dni
-        }
-      })
+      const formattedData = data
+      .filter(candidate => candidate.userTypeId === 2)
+      .map(candidate => ({
+        ...candidate,
+        label: `${candidate.firstName} ${candidate.lastName}`,
+        value: candidate.dni
+      }));
+
+      console.log("formattedData",formattedData)
 
       dispatch({
         type: GET_CANDIDATES_SUCCESS,

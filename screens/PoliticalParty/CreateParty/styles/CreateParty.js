@@ -43,8 +43,27 @@ const createPartyStyles = StyleSheet.create({
         marginRight: 9,
         textAlign: "center"
     },
-    
-    
+    imageContainter: {
+        width: 100,
+        marginTop: 8,
+        marginBottom: 5
+    },
+    proposalsContainer: {
+        display: "flex",
+        flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 10
+    },
+    purpleText: {
+        color: "#B1B2FF",
+        fontSize: 17,
+    },
+    blueText: {
+        color: "#AAC4FF",
+        fontSize: 20,
+    }
 })
 
 export { createPartyStyles }

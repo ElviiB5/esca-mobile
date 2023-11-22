@@ -38,3 +38,34 @@ export const getVotes = () => async (dispatch) => {
     });
   }
 }
+
+export const setVote = (partyName, token) => async (dispatch) => {
+  console.log("setVote")
+
+  dispatch({
+    type: SET_LOADING,
+    payload: true
+  });
+
+  try {
+    const form = new FormData()
+    form.append("PoliticalPartyName", partyName)
+
+    console.log("form",form)
+    const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertPoliticalParty`, form, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    console.log("Auth.loginFetch data",data);
+    console.log("Auth.loginFetch data",data.code);
+    
+    return { code: data.code, userCreatedSuccessful: true}
+  } catch (e) {
+    console.log(e)
+    return { code: undefined, userCreatedSuccessful: false}
+  } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
+  }
+}

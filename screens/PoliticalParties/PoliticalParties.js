@@ -17,9 +17,6 @@ const PoliticalParties = ({navigation}) => {
     useEffect(() => {
         dispatch(getPartiesFetch(token))
     }, [])
-
-    console.log("parties",parties)
-
     return (
         <>
         {isLoading ? 

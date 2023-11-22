@@ -196,3 +196,41 @@ export const createVoterUser = (userValues, token) => async (dispatch) => {
     });
   }
 }
+
+export const changeAuth = (username, currentPassword, newPassword, token) => async (dispatch) => {
+    console.log("changeAuth username", username, "currentPassword", currentPassword, "newPassword", newPassword)
+
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    });
+  
+    try {
+      dispatch({
+        type: SET_LOGOUT,
+      });
+      const form = new FormData()
+      form.append("UserName",username)
+      form.append("CurrentPass",currentPassword)
+      form.append("NewPass",newPassword)
+      const { data } = await axios.post(`${BASIC_URL}/ManageBasicInfo/UpdatePass`, form, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      console.log("Auth.loginFetch data",data);
+      
+      return { data: data, isUserUpdated: true}
+    } catch (error) {
+      console.log("Auth.loginFetch error",error);
+      console.error(error);
+      
+      dispatch({
+          type: USER_LOGIN_FAIL
+      });
+      return { data: undefined, isUserUpdated: false}
+    } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
+  }
+}

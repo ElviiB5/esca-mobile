@@ -4,8 +4,10 @@ import Input from '../../../common/Input/Input';
 import { EditProfileStyles } from '../styles/EditProfileStyle';
 import { useDispatch } from 'react-redux';
 import { showMessage, hideMessage } from "react-native-flash-message";
+import { changeAuth } from '../../../../fetches/Auth/Auth';
 
 const Top = ({userInfo, ...props}) => {
+    const { token } = useSelector(state => state.authReducer);
     const dispatch = useDispatch()
 
     const [userValues, setUserValues] = useState({
@@ -16,15 +18,15 @@ const Top = ({userInfo, ...props}) => {
 
     const handleChangeAuthCredentials = () => {
         if (newPassword === confirmPassword) {
-            const { authUpdated } = dispatch(changeAuth(userInfo.username, currentPassword, newPassword))
-            if (authUpdated) {
+            const { isUserUpdated } = dispatch(changeAuth(userInfo.username, currentPassword, newPassword, token))
+            if (isUserUpdated) {
                 showMessage({
                   message: "CONFIRMACIÓN",
                   description: "Se han actualizado las credenciales!",
                   type: "success",
                 });
 
-                // props.passedNavgation.navigate('Profile')
+                props.passedNavgation.navigate('Profile')
             } else {
                 showMessage({
                   message: "ERROR",
@@ -65,7 +67,7 @@ const Top = ({userInfo, ...props}) => {
                 <View style={EditProfileStyles.inputs}>
                     <Input 
                         style={EditProfileStyles.textInput} 
-                        header="Contrseña actual" 
+                        header="Contraseña actual" 
                         placeHolder="Contraseña actual"
                         isLogged={true} 
                         onChange={(event) => {

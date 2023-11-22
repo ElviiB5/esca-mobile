@@ -66,7 +66,7 @@ const Profile = ({navigation}) => {
                     <Text style={profile.contactText}>DNI:</Text>
                     <Text style={commonStyles.normalText}>{dni}</Text>
                     <Text style={profile.contactText}>Fecha de nacimiento:</Text>
-                    <Text style={commonStyles.normalText}>{birth}</Text>
+                    <Text style={commonStyles.normalText}>{new Date(birth).toLocaleDateString('en-GB')}</Text>
                     <Text style={profile.contactText}>Sexo:</Text>
                     <Text style={commonStyles.normalText}>{genderName}</Text>
                     <Text style={profile.contactText}>Estado:</Text>

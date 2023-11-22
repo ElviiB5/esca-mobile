@@ -2,10 +2,13 @@ import React from 'react';
 import { Button, Image, Text, View } from 'react-native';
 import { partyVote } from '../styles/Vote';
 import { commonStyles } from '../../commonStyles';
+import { useDispatch } from 'react-redux';
 
 const PoliticalPartyChoice = ({...props}) => {
+    const dispatch = useDispatch()
+
     const handleVote = () => {
-        console.log("Vote for", props.name)
+        dispatch(setVote(props.name, token))
     }
 
     return (
@@ -22,7 +25,7 @@ const PoliticalPartyChoice = ({...props}) => {
                 {props.candidate}
             </Text> 
             <View style={partyVote.button}>
-                <Button title='Votar' color='#B1B2FF' />
+                <Button title='Votar' color='#B1B2FF' onPress={handleVote} />
             </View>
         </View>
     )

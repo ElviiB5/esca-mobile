@@ -158,3 +158,51 @@ export const getPartyInfo = (token, partyName) => async (dispatch) => {
       return { data: undefined, setPartySuccess: false}
     }
 }
+
+export const createParty = (userValues, token) => async (dispatch) => {
+  console.log("loginFetch username", userValues.username, "password", userValues.password)
+
+  dispatch({
+    type: SET_LOADING,
+    payload: true
+  });
+
+  try {
+    const form = new FormData()
+    form.append("DNI",userValues.candidateDNI)
+    form.append("FirstName",userValues.candidateFirstname)
+    form.append("LastName",userValues.candidateLastname)
+    form.append("DateOfBirth",userValues.candidateBornDate)
+    form.append("UserName",userValues.candidateDNI)
+    form.append("Pass","$as5csdu57##xbbbcssoiavnds4398vwe&")
+    form.append("GenderName",userValues.candidateGender)
+    form.append("MunicipalityName",userValues.municipality)
+    form.append("StateName",userValues.state)
+    form.append("Street",userValues.street)
+    form.append("Number",userValues.number)
+    form.append("Colony",userValues.neighbor)
+    form.append("ZipCode",userValues.zip)
+    form.append("PoliticalPartyName", userValues.partyName)
+    form.append("Telephone", userValues.phone)
+    form.append("WebSite", userValues.website)
+    form.append("LogoImg", userValues.image)
+    form.append("Proposals", userValues.proposals)
+
+    console.log("form",form)
+    const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertPoliticalParty`, form, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    console.log("Auth.loginFetch data",data);
+    console.log("Auth.loginFetch data",data.code);
+    
+    return { code: data.code, userCreatedSuccessful: true}
+  } catch (e) {
+    console.log(e)
+    return { code: undefined, userCreatedSuccessful: false}
+  } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
+  }
+}
