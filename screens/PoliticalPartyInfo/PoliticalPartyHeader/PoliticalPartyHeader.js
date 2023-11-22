@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Button, Image, Text, View, Modal } from 'react-native';
 import { commonStyles } from '../../commonStyles';
 import { partyInfo } from '../styles/PoliticalPartyInfo';
+import { useSelector } from 'react-redux';
 
 const PoliticalPartyHeader = ({...props}) => {
     const [modalVisible, setModalVisible] = useState(false)
+    const { currentPositions } = useSelector(state => state.partiesReducer);
 
     return (
         <View style={partyInfo.animationView}>
@@ -14,8 +16,12 @@ const PoliticalPartyHeader = ({...props}) => {
                 visible={modalVisible}>
                     <View style={partyInfo.modalView}>
                         <Text style={partyInfo.normalText}>
-                            <Text style={partyInfo.blueText}>Candidato presidencial: </Text>
-                            {props.candidate}
+                            <Text style={partyInfo.normalText}>Puestos que ha tenido:</Text>
+                            {currentPositions.map((position) => {
+                                return (
+                                    <Text style={partyInfo.blueText}> {position.positionName}</Text>
+                                )
+                            })}
                         </Text>
                         <Button title='Cerrar'
                             onPress={() => setModalVisible(false)}>

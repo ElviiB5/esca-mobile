@@ -2,9 +2,11 @@ import React from 'react';
 import { Button, Image, Text, View } from 'react-native';
 import { partyVote } from '../styles/Vote';
 import { commonStyles } from '../../commonStyles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setVote } from '../../../fetches/Votes/Votes'
 
 const PoliticalPartyChoice = ({...props}) => {
+    const { token, rol } = useSelector(state => state.authReducer);
     const dispatch = useDispatch()
 
     const handleVote = () => {

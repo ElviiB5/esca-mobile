@@ -9,10 +9,12 @@ import RNPickerSelect from 'react-native-picker-select';
 import * as ImagePicker from 'expo-image-picker';
 import { party } from "../styles/PoliticalParty";
 import { createParty } from "../../../fetches/PoliticalParties/PoliticalParties";
+import { getStatesAndMunicipalities } from "../../../fetches/General/General";
+
 
 const CreateParty = ({ navigation }) => {
+  const { states, municipalities } = useSelector(state => state.generalReducer);
     const { token, rol } = useSelector(state => state.authReducer);
-    const { candidates } = useSelector(state => state.usersReducer);
 
     const [candidateDNI, setCandidateDNI] = useState("")
     const [candidateFirstname, setCandidateFirstname] = useState("")
@@ -20,6 +22,7 @@ const CreateParty = ({ navigation }) => {
     const [candidateBornDate, setCandidateBornDate] = useState("")
     const [candidateGender, setCandidateGender] = useState("")
     const [municipality, setMunicipality] = useState("")
+    const [selectedMunicipalities, setSelectedMunicipalities] = useState("")
     const [state, setState] = useState("")
     const [street, setStreet] = useState("")
     const [number, setNumber] = useState("")
@@ -29,17 +32,34 @@ const CreateParty = ({ navigation }) => {
     const [phone, setPhone] = useState("")
     const [website, setWebsite] = useState("")
     const [image, setImage] = useState("")
+    const [imageName, setImageName] = useState("")
     const [proposals, setProposals] = useState([""])
+    const [positions, setPositions] = useState([""])
 
     console.log("image",image)
     console.log("proposals",proposals)
+    console.log("positions",positions)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      fetchData()
+    }, [])
+
+    const fetchData = async () => {
+      await dispatch(getStatesAndMunicipalities())
+    }
 
     const removeProposal = (index) => {
       console.log("here")
         const updatedProposals = proposals.filter((_, i) => i !== index);
         setProposals(updatedProposals);
+    }
+
+    const removePositon = (index) => {
+      console.log("here")
+        const updatedPositions = positions.filter((_, i) => i !== index);
+        setPositions(updatedPositions);
     }
 
     const handleCreateParty = () => {
@@ -59,7 +79,9 @@ const CreateParty = ({ navigation }) => {
         phone,
         website,
         image,
+        imageName,
         proposals,
+        positions,
       }
         const { partyCreated } = dispatch(createParty(newParty, token))
 
@@ -78,6 +100,7 @@ const CreateParty = ({ navigation }) => {
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        setImageName(result.assets[0].fileName);
       }
     };
 
@@ -127,25 +150,24 @@ const CreateParty = ({ navigation }) => {
           <View style={createPartyStyles.titleView}>
             <Text style={createPartyStyles.title}>Dirección del partido</Text>
           </View>
-          <View style={createPartyStyles.inputs}>
-            <Input
-              style={createPartyStyles.textInput}
-              header="Municipio"
-              placeHolder="Municipio"
-              isLogged={true}
-              onChange={(event) => setMunicipality(event.nativeEvent.text)}
-              value={municipality}
-            />
+          <View>
+              <Text style={createPartyStyles.text} >Estado</Text>
+              <RNPickerSelect
+                  onValueChange={(value) => {
+                    const selectedState = states.states.find((state) => state.label === value)
+                    const filteredMunicipalities = municipalities.filter((municipality) => municipality?.stateid === selectedState.id)
+                    setSelectedMunicipalities(filteredMunicipalities)
+                    setState(value)
+                  }}
+                  items={states?.states || []}
+              />
           </View>
-          <View style={createPartyStyles.inputs}>
-            <Input
-              style={createPartyStyles.textInput}
-              header="Estado"
-              placeHolder="Estado"
-              isLogged={true}
-              onChange={(event) => setState(event.nativeEvent.text)}
-              value={state}
-            />
+          <View>
+              <Text style={createPartyStyles.text} >Municipio</Text>
+              <RNPickerSelect
+                  onValueChange={(value) => setMunicipality(value)}
+                  items={selectedMunicipalities || []}
+              />
           </View>
           <View style={createPartyStyles.inputs}>
             <Input
@@ -274,6 +296,41 @@ const CreateParty = ({ navigation }) => {
                       { label: 'Masculino', value: 'Masculino' },
                   ]}
               />
+          </View>
+          <View style={createPartyStyles.inputs}>
+            {positions.map((position, index) => (
+              <View key={index}>
+                <Input
+                  style={createPartyStyles.textInput}
+                  header={`Posición #${index + 1}`}
+                  placeHolder={`#${index + 1}`}
+                  isLogged={true}
+                  onChange={(event) => {
+                    const allPositions = [...positions];
+                    allPositions[index] = event.nativeEvent.text;
+                    setPositions(allPositions);
+                  }}
+                  value={position}
+                />
+                <FontAwesome
+                  name="minus"
+                  size={40}
+                  color="#F79BD3"
+                  onPress={() => removePositon(index)}
+                />
+              </View>
+            ))}
+            <TouchableOpacity
+                style={createPartyStyles.proposalsContainer}
+                onPress={() => setPositions([...positions, ""])}
+                >
+                <Text style={createPartyStyles.blueText}>Agregar puesto </Text>
+                <FontAwesome
+                  name="plus"
+                  size={40}
+                  color="#AAC4FF"
+                />
+            </TouchableOpacity>
           </View>
 
           <View style={createPartyStyles.button}>

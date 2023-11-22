@@ -13,16 +13,18 @@ export const getVotes = () => async (dispatch) => {
     });
   
     try {
-      const result = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetVotes`);
+      const { data } = await axios.get(`${BASIC_URL}/ManageGeneralElectionsInfo/GetVote`);
+
+      console.log(data)
       
       dispatch({
         type: SET_VOTES_SUCCESS,
         payload: {
-            generalVotes: result.data.generalCount,
-            stateVotes: result.data.stateVotes
+            generalVotes: data.generalCount,
+            stateVotes: data.stateVotes
         }
       });
-      return { data: result, setVotesSuccessful: true}
+      return { data, setVotesSuccessful: true}
     } catch (error) {
       console.log("Vote.getVotes error",error);
       console.error(error);
@@ -52,7 +54,7 @@ export const setVote = (partyName, token) => async (dispatch) => {
     form.append("PoliticalPartyName", partyName)
 
     console.log("form",form)
-    const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertPoliticalParty`, form, {
+    const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertVote`, form, {
       headers: { Authorization: `Bearer ${token}` }
     });
     console.log("Auth.loginFetch data",data);

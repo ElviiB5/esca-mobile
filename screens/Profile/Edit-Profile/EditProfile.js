@@ -3,11 +3,9 @@ import { ScrollView, View } from 'react-native';
 import Top from './Top/Top';
 
 const EditProfile = ({route, navigation}) => {
-    const { userInfo } = route.params
-
     return(
         <ScrollView>
-            <Top passedNavgation={navigation} userInfo={userInfo} />
+            <Top passedNavgation={navigation} />
             <View style={{
                 marginTop: -2,
                 borderBottomColor: '#AAC4FF',

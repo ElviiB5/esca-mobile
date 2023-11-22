@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import { Button, Text, View } from 'react-native';
 import Input from '../../../common/Input/Input';
 import { EditProfileStyles } from '../styles/EditProfileStyle';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { changeAuth } from '../../../../fetches/Auth/Auth';
 
-const Top = ({userInfo, ...props}) => {
+const Top = ({...props}) => {
     const { token } = useSelector(state => state.authReducer);
     const dispatch = useDispatch()
+    const { userName } = useSelector(state => state.authReducer);
 
     const [userValues, setUserValues] = useState({
         currentPassword: '',
@@ -17,8 +18,8 @@ const Top = ({userInfo, ...props}) => {
     })
 
     const handleChangeAuthCredentials = () => {
-        if (newPassword === confirmPassword) {
-            const { isUserUpdated } = dispatch(changeAuth(userInfo.username, currentPassword, newPassword, token))
+        if (userValues.newPassword === userValues.confirmPassword) {
+            const { isUserUpdated } = dispatch(changeAuth(userName, userValues.currentPassword, userValues.newPassword, token))
             if (isUserUpdated) {
                 showMessage({
                   message: "CONFIRMACIÓN",
@@ -44,7 +45,7 @@ const Top = ({userInfo, ...props}) => {
     }
 
     const handleButtonClick = () => {
-        if (currentPassword !== "" && newPassword !== "" && confirmPassword !== "") {
+        if (userValues.currentPassword !== "" && userValues.newPassword !== "" && userValues.confirmPassword !== "") {
             handleChangeAuthCredentials()
         } else {
             showMessage({
@@ -62,7 +63,7 @@ const Top = ({userInfo, ...props}) => {
                     <Text style={EditProfileStyles.title}>Editar perfil</Text>
                 </View>
                 <View style={EditProfileStyles.titleView}>
-                    <Text style={EditProfileStyles.title}>{userInfo.username}</Text>
+                    <Text style={EditProfileStyles.pinkTitle}>{userName}</Text>
                 </View>
                 <View style={EditProfileStyles.inputs}>
                     <Input 

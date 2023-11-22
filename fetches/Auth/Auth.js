@@ -213,7 +213,7 @@ export const changeAuth = (username, currentPassword, newPassword, token) => asy
       form.append("UserName",username)
       form.append("CurrentPass",currentPassword)
       form.append("NewPass",newPassword)
-      const { data } = await axios.post(`${BASIC_URL}/ManageBasicInfo/UpdatePass`, form, {
+      const { data } = await axios.put(`${BASIC_URL}/ManageBasicInfo/UpdatePass`, form, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log("Auth.loginFetch data",data);

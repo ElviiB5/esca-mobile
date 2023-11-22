@@ -14,12 +14,8 @@ const PoliticalPartyData = ({...props}) => {
 
                 <View style={{ marginTop: 10 }}>
                     <Text style={partyInfo.normalAlignText}>
-                        <Text style={partyInfo.blueText}>Fecha de registro: </Text>
-                        {props.register}
-                    </Text>
-                    <Text style={partyInfo.normalAlignText}>
                         <Text style={partyInfo.blueText}>Domicilio: </Text>
-                        Calle {props.street}, No. {props.number}, Col. {props.neighbor}, CP: {props.zipCode}
+                        {props.address}
                     </Text>
                     <Text style={partyInfo.normalAlignText}>
                         <Text style={partyInfo.blueText}>Teléfono: </Text>
@@ -38,7 +34,7 @@ const PoliticalPartyData = ({...props}) => {
 
                 <Text style={partyInfo.purpleTextTitle}>Sus propuestas</Text>
                 {platforms.map((platform) => {
-                    return(<PoliticalPartyPlatform key={platform.platformid} name={platform.name} description={platform.description} />)
+                    return(<PoliticalPartyPlatform key={platform.proposalsId} description={platform.proposalsDesciption} />)
                 })}
             </View>
         </ScrollView>

@@ -16,33 +16,12 @@ const Profile = ({navigation}) => {
         genderName,
         birth,
         municipality,
-        state,
         street,
         number,
         neighbor,
         zipCode,
-        latitude,
-        longitude,
         token, 
         rol } = useSelector(state => state.authReducer);
-
-    const userInfo = { 
-        dni, 
-        userName, 
-        fullName,
-        genderName,
-        birth,
-        municipality,
-        state,
-        street,
-        number,
-        neighbor,
-        zipCode,
-        latitude,
-        longitude,
-        token, 
-        rol 
-    }
 
     const dispatch = useDispatch()
 
@@ -87,7 +66,7 @@ const Profile = ({navigation}) => {
                 </View>
             </View>
             <View style={profile.button}>
-                <Button title='EDITAR' color='#B1B2FF' onPress={() => navigation.navigate('EditProfile', userInfo)} />
+                <Button title='EDITAR' color='#B1B2FF' onPress={() => navigation.navigate('EditProfile')} />
             </View>
             {rol === "Administrador" &&
             <View style={profile.button}>

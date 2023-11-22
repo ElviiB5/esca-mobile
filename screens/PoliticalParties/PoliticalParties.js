@@ -22,7 +22,7 @@ const PoliticalParties = ({navigation}) => {
         {isLoading ? 
         <LottieView source={require("../../assets/loader.json")} autoPlay loop />
         :
-        <View style={commonStyles.topContainer}>
+        <ScrollView style={commonStyles.topContainer}>
             {rol === "Administrador" && 
                 <View style={{ width: 340, marginTop: 10 }}>
                     <Button 
@@ -48,20 +48,20 @@ const PoliticalParties = ({navigation}) => {
                     <Text style={commonStyles.footer}>Panorama completo de los partidos políticos participantes en las elecciones presidenciales de México</Text>
                 </View>
 
-                <FlatList 
-                    data={parties}
-                    renderItem={({ item }) => <PoliticalParty 
-                                                    key={item.politicalPartyId}
-                                                    partyName={item.politicalPartyName} 
-                                                    partyId={item.politicalPartyId}
-                                                    candidate={item.userId}
-                                                    logo={item.logoImgPath}
-                                                    navigation={navigation}
-                                                    rol={rol} />
-                    }
-                />
+                {parties.map((party) => {
+                    return (
+                        <PoliticalParty 
+                            key={party.politicalPartyId}
+                            partyName={party.politicalPartyName} 
+                            partyId={party.politicalPartyId}
+                            candidate={party.politicianName}
+                            logo={party.logoImgPath}
+                            navigation={navigation}
+                            rol={rol} />
+                    )
+                })}
             </View>
-        </View>
+        </ScrollView>
         }
     </>
     )

@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const commonStyles = StyleSheet.create({
     topContainer: {
-        marginBottom: 210,
         marginHorizontal: 10
     },
     animationView: {

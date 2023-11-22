@@ -42,6 +42,12 @@ const EditProfileStyles = StyleSheet.create({
         fontSize: 32,
         marginRight: 9
     },
+    pinkTitle: {
+        color: '#F79BD3',
+        fontSize: 28,
+        alignItems: "center",
+        marginBottom: 10
+    },
     
 })
 

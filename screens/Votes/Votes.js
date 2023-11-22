@@ -14,6 +14,9 @@ const Votes = () => {
     const { generalVotes, stateVotes } = useSelector(state => state.votesReducer);
     const { isLoading } = useSelector(state => state.basicReducer);
 
+    console.log("generalVotes",generalVotes)
+    console.log("stateVotes",stateVotes)
+
     const dispatch = useDispatch()
 
     const fetchData = () => {

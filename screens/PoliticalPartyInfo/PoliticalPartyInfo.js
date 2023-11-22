@@ -5,24 +5,22 @@ import PoliticalPartyData from './PoliticalPartyData/PoliticalPartyData';
 import PoliticalPartyJson from '../../jsons/PoliticalParty.json'
 import { getPartyInfo } from '../../fetches/PoliticalParties/PoliticalParties';
 import { useDispatch, useSelector } from 'react-redux';
+import LottieView from "lottie-react-native";
 
 const PoliticalPartyInfo = ({ route, navigation }) => {
+    const { isLoading } = useSelector(state => state.basicReducer);
     const { token, rol } = useSelector(state => state.authReducer);
     const { 
         currentPartyName, 
         currentCandidateName, 
         currentProposals, 
+        currentPositions, 
         currentLogo,
-        currentMunicipality,
-        currentState,
-        currentStreet,
-        currentNumber,
-        currentNeighbor,
-        currentZipCode,
-        currentLatitude,
-        currentLongitude,
+        currentAddress,
         currentWebsite,
         currentPhone } = useSelector(state => state.partiesReducer);
+
+    console.log("currentProposals",currentProposals)
 
     const { partyName } = route.params
 
@@ -33,6 +31,10 @@ const PoliticalPartyInfo = ({ route, navigation }) => {
     }, [])
 
     return (
+        <>
+        {isLoading ? 
+        <LottieView source={require("../../assets/loader.json")} autoPlay loop />
+        :
         <View>
             <PoliticalPartyHeader 
                 name={currentPartyName} 
@@ -48,22 +50,17 @@ const PoliticalPartyInfo = ({ route, navigation }) => {
             
             <View style={{ marginTop: 20 }}>
                 <PoliticalPartyData
-                    register={PoliticalPartyJson.registerDate}
-                    municipality={currentMunicipality}
-                    state={currentState}
-                    street={currentStreet}
-                    number={currentNumber}
-                    neighbor={currentNeighbor}
-                    zipCode={currentZipCode}
-                    latitud={currentLatitude}
-                    longitud={currentLongitude}
+                    address={currentAddress}
                     phone={currentPhone}
                     website={currentWebsite}
-                    platforms={PoliticalPartyJson.platforms} //currentProposals???
+                    platforms={currentProposals}
+                    positions={currentPositions}
                 />
             </View>
 
         </View>
+        }
+    </>
     )
 }
 
