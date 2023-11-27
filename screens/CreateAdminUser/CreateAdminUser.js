@@ -77,6 +77,7 @@ const CreateAdminUser = ({navigation}) => {
                   description: "Ya tienes acceso con el usuario!",
                   type: "success",
                 });
+                navigation.navigate('Profile')
             } else {
                 showMessage({
                   message: "ERROR!",
@@ -213,16 +214,6 @@ const CreateAdminUser = ({navigation}) => {
                         onChange={(event) => setUserValues({ ...userValues, 'zip': event.nativeEvent.text })}
                     /> 
                 </View>
-                    <View>
-                        <Text style={createAdminUserStyle.text} >Tipo de usuario</Text>
-                        <RNPickerSelect
-                            onValueChange={(value) => setUserValues({ ...userValues, 'userType': value })}
-                            items={[
-                                { label: 'Administrador', value: 'Administrador' },
-                                { label: 'Candidato', value: 'Candidato' },
-                            ]}
-                        />
-                    </View>
                 <View style={createAdminUserStyle.button}>
                     <Button title='Crear usuario' color='#B1B2FF' onPress={handleCreateAdmin} />
                 </View>

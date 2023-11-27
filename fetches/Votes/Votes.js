@@ -42,7 +42,7 @@ export const getVotes = () => async (dispatch) => {
 }
 
 export const setVote = (partyName, token) => async (dispatch) => {
-  console.log("setVote")
+  console.log("setVote", partyName)
 
   dispatch({
     type: SET_LOADING,
@@ -60,10 +60,10 @@ export const setVote = (partyName, token) => async (dispatch) => {
     console.log("Auth.loginFetch data",data);
     console.log("Auth.loginFetch data",data.code);
     
-    return { code: data.code, userCreatedSuccessful: true}
+    return { code: data.code, message: data.message, userCreatedSuccessful: true}
   } catch (e) {
     console.log(e)
-    return { code: undefined, userCreatedSuccessful: false}
+    return { code: undefined, message: undefined, userCreatedSuccessful: false}
   } finally {
     dispatch({
       type: SET_LOADING,

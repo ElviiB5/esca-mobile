@@ -33,8 +33,12 @@ const PoliticalPartyData = ({...props}) => {
                     borderBottomWidth: 2,}}></View>
 
                 <Text style={partyInfo.purpleTextTitle}>Sus propuestas</Text>
-                {platforms.map((platform) => {
-                    return(<PoliticalPartyPlatform key={platform.proposalsId} description={platform.proposalsDesciption} />)
+                {platforms.map((platform, item) => {
+                    return(
+                      <PoliticalPartyPlatform 
+                        key={`${platform.proposalsId}-${item}`} 
+                        description={platform.proposalsDesciption} />
+                    )
                 })}
             </View>
         </ScrollView>

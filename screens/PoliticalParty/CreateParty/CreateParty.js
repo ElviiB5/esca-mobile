@@ -33,12 +33,13 @@ const CreateParty = ({ navigation }) => {
     const [website, setWebsite] = useState("")
     const [image, setImage] = useState("")
     const [imageName, setImageName] = useState("")
-    const [proposals, setProposals] = useState([""])
-    const [positions, setPositions] = useState([""])
+    const [proposals, setProposals] = useState([{"ProposalDescription": ""}])
+    const [positions, setPositions] = useState([{"PositionName": ""}])
 
     console.log("image",image)
     console.log("proposals",proposals)
     console.log("positions",positions)
+    console.log("selectedMunicipalities",selectedMunicipalities)
 
     const dispatch = useDispatch()
 
@@ -62,7 +63,7 @@ const CreateParty = ({ navigation }) => {
         setPositions(updatedPositions);
     }
 
-    const handleCreateParty = () => {
+    const handleCreateParty = async () => {
       const newParty = {
         candidateDNI,
         candidateFirstname,
@@ -83,7 +84,7 @@ const CreateParty = ({ navigation }) => {
         proposals,
         positions,
       }
-        const { partyCreated } = dispatch(createParty(newParty, token))
+        const { partyCreated } = await dispatch(createParty(newParty, token))
 
         if (partyCreated) {
             navigation.navigate('PoliticalParties')
@@ -109,7 +110,7 @@ const CreateParty = ({ navigation }) => {
       <View>
         <View style={createPartyStyles.mainView}>
           <View style={createPartyStyles.titleView}>
-            <Text style={createPartyStyles.title}>Editar partido político</Text>
+            <Text style={createPartyStyles.title}>Crear partido político</Text>
           </View>
           <View style={createPartyStyles.inputs}>
             <Input
@@ -150,11 +151,11 @@ const CreateParty = ({ navigation }) => {
           <View style={createPartyStyles.titleView}>
             <Text style={createPartyStyles.title}>Dirección del partido</Text>
           </View>
-          <View>
-              <Text style={createPartyStyles.text} >Estado</Text>
+          <View style={createPartyStyles.inputs}>
+              <Text style={createPartyStyles.grayText} >Estado</Text>
               <RNPickerSelect
                   onValueChange={(value) => {
-                    const selectedState = states.states.find((state) => state.label === value)
+                    const selectedState = states.states?.find((state) => state.label === value)
                     const filteredMunicipalities = municipalities.filter((municipality) => municipality?.stateid === selectedState.id)
                     setSelectedMunicipalities(filteredMunicipalities)
                     setState(value)
@@ -162,8 +163,8 @@ const CreateParty = ({ navigation }) => {
                   items={states?.states || []}
               />
           </View>
-          <View>
-              <Text style={createPartyStyles.text} >Municipio</Text>
+          <View style={createPartyStyles.inputs}>
+              <Text style={createPartyStyles.grayText} >Municipio</Text>
               <RNPickerSelect
                   onValueChange={(value) => setMunicipality(value)}
                   items={selectedMunicipalities || []}
@@ -219,10 +220,10 @@ const CreateParty = ({ navigation }) => {
                   isLogged={true}
                   onChange={(event) => {
                     const allProposals = [...proposals];
-                    allProposals[index] = event.nativeEvent.text;
+                    allProposals[index] = {"ProposalDescription": event.nativeEvent.text};
                     setProposals(allProposals);
                   }}
-                  value={proposal}
+                  value={proposal.ProposalDescription}
                 />
                 <FontAwesome
                   name="minus"
@@ -234,7 +235,7 @@ const CreateParty = ({ navigation }) => {
             ))}
             <TouchableOpacity
                 style={createPartyStyles.proposalsContainer}
-                onPress={() => setProposals([...proposals, ""])}
+                onPress={() => setProposals([...proposals, {"ProposalDescription": ""}])}
                 >
                 <Text style={createPartyStyles.blueText}>Agregar propuesta </Text>
                 <FontAwesome
@@ -287,8 +288,8 @@ const CreateParty = ({ navigation }) => {
               value={candidateBornDate}
             />
           </View>
-          <View>
-              <Text style={createPartyStyles.purpleText} >Sexo del candidato</Text>
+          <View style={createPartyStyles.inputs}>
+              <Text style={createPartyStyles.grayText} >Sexo del candidato</Text>
               <RNPickerSelect
                   onValueChange={(value) => setCandidateGender(value)}
                   items={[
@@ -307,10 +308,10 @@ const CreateParty = ({ navigation }) => {
                   isLogged={true}
                   onChange={(event) => {
                     const allPositions = [...positions];
-                    allPositions[index] = event.nativeEvent.text;
+                    allPositions[index] = {"PositionName": event.nativeEvent.text};
                     setPositions(allPositions);
                   }}
-                  value={position}
+                  value={position.PositionName}
                 />
                 <FontAwesome
                   name="minus"
@@ -322,7 +323,7 @@ const CreateParty = ({ navigation }) => {
             ))}
             <TouchableOpacity
                 style={createPartyStyles.proposalsContainer}
-                onPress={() => setPositions([...positions, ""])}
+                onPress={() => setPositions([...positions, {"PositionName": ""}])}
                 >
                 <Text style={createPartyStyles.blueText}>Agregar puesto </Text>
                 <FontAwesome

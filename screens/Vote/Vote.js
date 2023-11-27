@@ -5,6 +5,7 @@ import { commonStyles } from '../commonStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPartiesFetch } from '../../fetches/PoliticalParties/PoliticalParties';
 import LottieView from "lottie-react-native";
+import FlashMessage from 'react-native-flash-message';
 
 const Vote = () => {
     const { token, rol } = useSelector(state => state.authReducer);
@@ -35,8 +36,9 @@ const Vote = () => {
 
             <FlatList 
                 data={parties}
-                renderItem={({ item }) => <PoliticalPartyChoice key={item.politicalPartyId} name={item.politicalPartyName} candidate={item.userId} />}
+                renderItem={({ item }) => <PoliticalPartyChoice key={item.politicalPartyId} name={item.politicalPartyName} candidate={item.politicianName} />}
             />
+            <FlashMessage position="top" />
         </View>
         }
     </>

@@ -14,27 +14,36 @@ const StateVotes = (props) => {
         ]
       };
 
+    const dataLength = data.datasets[0].data.length
+
     const chartConfig = {
         backgroundGradientFrom: "#EEF1FF",
         backgroundGradientTo: "#EEF1FF",
         color: (opacity = 1) => `#F79BD3`,
         barColors: ["#AAC4FF", "#D2DAFF", "#EEF1FF"],
-        strokeWidth: 7,
-        barPercentage: 0.5,
+        strokeWidth: 10,
+        barPercentage: 1,
         useShadowColorFromDataset: false,
       };
 
     return (
         <View style={votes.container}>
           <Text style={votes.purpleText}>{props.state}</Text>
-           <BarChart
-                data={data}
-                width={345}
-                height={300}
-                yAxisLabel="$"
-                chartConfig={chartConfig}
-                verticalLabelRotation={30}
-            />
+          
+          <View  style={votes.chartContainer}>
+            {dataLength > 0 ? 
+            <BarChart
+                  data={data}
+                  width={345}
+                  height={300}
+                  yAxisInterval={2}
+                  chartConfig={chartConfig}
+                  verticalLabelRotation={30}
+              />
+              :
+              <Text style={votes.pinkText}>Este estado no tiene votos por ningún partido</Text>
+            }
+          </View>
         </View>
     )
 }

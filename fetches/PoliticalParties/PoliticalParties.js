@@ -10,6 +10,7 @@ import { SET_LOADING } from "../../redux/reducers/basicReducer";
 
 export const getPartiesFetch = (token) => async (dispatch) => {
     console.log("getPartiesFetch token", token)
+    console.log("getPartiesFetch", `${BASIC_URL}/ManageBasicInfo/GetPoliticalParty`)
 
     dispatch({
       type: SET_LOADING,
@@ -20,12 +21,8 @@ export const getPartiesFetch = (token) => async (dispatch) => {
       const { data } = await axios.get(`${BASIC_URL}/ManageBasicInfo/GetPoliticalParty`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      data.map((item) => {
-        return {
-          ...item,
-          image: `data:image/png;base64,${data.LogoImg}`
-        }
-      })
+      
+      console.log("data",data)
       
       dispatch({
           type: SET_PARTIES_SUCCESS,
@@ -114,7 +111,27 @@ export const getPartyInfo = (token, partyName) => async (dispatch) => {
 }
 
 export const createParty = (userValues, token) => async (dispatch) => {
-  console.log("loginFetch username", userValues.username, "password", userValues.password)
+  console.log("createParty username", userValues.candidateDNI)
+  console.log("createParty positions", userValues.positions)
+  console.log("createParty Proposals", userValues.proposals)
+  console.log("createParty", `${BASIC_URL}/InsertBasicInfo/InsertPoliticalParty`)
+
+  const finalProposals = userValues.proposals.map((proposal) => {
+    console.log("JSON.stringify(proposal)",JSON.stringify(proposal))
+    return JSON.stringify(proposal)
+  }).toString()
+  const finalPositions = userValues.positions.map((position) => {
+    console.log("JSON.stringify(position)",JSON.stringify(position))
+    return JSON.stringify(position)
+  }).toString()
+
+  const stringProposals = `[${finalProposals}]`
+  const stringPositions = `[${finalPositions}]`
+
+  console.log("finalProposals",finalProposals)
+  console.log("stringProposals",stringProposals)
+  console.log("finalPositions",finalPositions)
+  console.log("stringPositions",stringPositions)
 
   dispatch({
     type: SET_LOADING,
@@ -139,13 +156,8 @@ export const createParty = (userValues, token) => async (dispatch) => {
     form.append("PoliticalPartyName", userValues.partyName)
     form.append("Telephone", userValues.phone)
     form.append("WebSite", userValues.website)
-    form.append('LogoImg', {
-      uri: userValues.image,
-      type: 'image/jpeg',
-      name:  userValues.imageName,
-    });
-    form.append("Proposals", userValues.proposals)
-    form.append("Postions", userValues.positions)
+    form.append("Proposals", stringProposals)
+    form.append("Postions", stringPositions)
     form.append("Latitude", 101.1001)
     form.append("Longitude", 101.1001)
 
@@ -157,10 +169,10 @@ export const createParty = (userValues, token) => async (dispatch) => {
     console.log("Auth.loginFetch data",response.data);
     console.log("Auth.loginFetch data",response.data.code);
     
-    return { code: response.data.code, userCreatedSuccessful: true}
+    return { code: response.data.code, partyCreated: true}
   } catch (e) {
     console.log(e)
-    return { code: undefined, userCreatedSuccessful: false}
+    return { code: undefined, partyCreated: false}
   } finally {
     dispatch({
       type: SET_LOADING,

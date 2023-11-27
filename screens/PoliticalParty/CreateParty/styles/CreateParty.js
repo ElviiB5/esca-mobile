@@ -63,6 +63,10 @@ const createPartyStyles = StyleSheet.create({
     blueText: {
         color: "#AAC4FF",
         fontSize: 20,
+    },
+    grayText: {
+        color: "#B3AAAA",
+        fontSize: 15,
     }
 })
 

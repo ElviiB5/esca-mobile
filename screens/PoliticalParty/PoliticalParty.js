@@ -14,7 +14,7 @@ const PoliticalParty = ({...props}) => {
         <View style={commonStyles.animationView}>
             <View style={party.imageContainter}>
                 <Image
-                    source={props.image}
+                    source={require('../../assets/purple-icon.jpg')}
                     style={{width: 250, height: 100}}
                 />
             </View>

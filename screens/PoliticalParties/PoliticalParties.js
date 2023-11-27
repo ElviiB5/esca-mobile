@@ -48,10 +48,10 @@ const PoliticalParties = ({navigation}) => {
                     <Text style={commonStyles.footer}>Panorama completo de los partidos políticos participantes en las elecciones presidenciales de México</Text>
                 </View>
 
-                {parties.map((party) => {
+                {parties.map((party, item) => {
                     return (
                         <PoliticalParty 
-                            key={party.politicalPartyId}
+                            key={`${party.politicalPartyId}-${item}`}
                             partyName={party.politicalPartyName} 
                             partyId={party.politicalPartyId}
                             candidate={party.politicianName}

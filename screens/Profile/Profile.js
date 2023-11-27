@@ -48,8 +48,6 @@ const Profile = ({navigation}) => {
                     <Text style={commonStyles.normalText}>{new Date(birth).toLocaleDateString('en-GB')}</Text>
                     <Text style={profile.contactText}>Sexo:</Text>
                     <Text style={commonStyles.normalText}>{genderName}</Text>
-                    <Text style={profile.contactText}>Estado:</Text>
-                    <Text style={commonStyles.normalText}>{ProfileJson.state}</Text>
                     <Text style={profile.contactText}>Dirección:</Text>
                     <Text style={commonStyles.normalText}>Municipio: {municipality}, 
                                                     Calle: {street}, Número: {number}, 

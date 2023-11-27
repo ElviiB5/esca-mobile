@@ -178,9 +178,51 @@ export const createVoterUser = (userValues, token) => async (dispatch) => {
     form.append("Pass",userValues.password)
     form.append("UserTypeName", 'Votante')
 
-    console.log("form",form)
     const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertVotingUser`, form, {
       headers: { PrivateKeyAccess: `${PRIVATE_ACCESS_TOKEN}` }
+    });
+    console.log("Auth.loginFetch data",data);
+    console.log("Auth.loginFetch data",data.code);
+    
+    return { code: data.code, userCreatedSuccessful: true}
+  } catch (e) {
+    console.log(e)
+    return { code: undefined, userCreatedSuccessful: false}
+  } finally {
+    dispatch({
+      type: SET_LOADING,
+      payload: false
+    });
+  }
+}
+
+export const createAdminUser = (userValues, token) => async (dispatch) => {
+  console.log("loginFetch username", userValues.username, "password", userValues.password)
+
+  dispatch({
+    type: SET_LOADING,
+    payload: true
+  });
+
+  try {
+    const form = new FormData()
+    form.append("DNI",userValues.dni)
+    form.append("FirstName",userValues.firstname)
+    form.append("LastName",userValues.lastname)
+    form.append("DateOfBirth",userValues.birthDate)
+    form.append("GenderName",userValues.gender)
+    form.append("MunicipalityName",userValues.municipality)
+    form.append("StateName",userValues.state)
+    form.append("Street",userValues.street)
+    form.append("Number",userValues.number)
+    form.append("Colony",userValues.neighbor)
+    form.append("ZipCode",userValues.zip)
+    form.append("UserName",userValues.username)
+    form.append("Pass",userValues.password)
+    form.append("UserTypeName", 'Administrador')
+    
+    const { data } = await axios.post(`${BASIC_URL}/InsertBasicInfo/InsertUser`, form, {
+      headers: { Authorization: `Bearer ${token}` }
     });
     console.log("Auth.loginFetch data",data);
     console.log("Auth.loginFetch data",data.code);

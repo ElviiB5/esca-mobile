@@ -1,11 +1,12 @@
 import axios from "axios";
 import { BASIC_URL } from '@env';
-import { SET_MUNICIPALITIES_SUCCESS, SET_STATES_FAIL, SET_STATES_SUCCESS } from "../../redux/reducers/generalReducer";
+import { SET_MUNICIPALITIES_FAIL, SET_MUNICIPALITIES_SUCCESS, SET_STATES_FAIL, SET_STATES_SUCCESS } from "../../redux/reducers/generalReducer";
 import { SET_LOADING } from "../../redux/reducers/basicReducer";
 
 
 export const getStatesAndMunicipalities = () => async (dispatch) => {
     console.log("getStatesAndMunicipalities")
+    console.log("getStatesAndMunicipalities",`${BASIC_URL}/ManageBasicInfo/GetStates`)
 
     dispatch({
       type: SET_LOADING,

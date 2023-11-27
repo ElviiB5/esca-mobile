@@ -17,11 +17,11 @@ const PoliticalPartyHeader = ({...props}) => {
                     <View style={partyInfo.modalView}>
                         <Text style={partyInfo.normalText}>
                             <Text style={partyInfo.normalText}>Puestos que ha tenido:</Text>
-                            {currentPositions.map((position) => {
-                                return (
-                                    <Text style={partyInfo.blueText}> {position.positionName}</Text>
-                                )
-                            })}
+                                {currentPositions.map((position, item) => (
+                                <View key={item} style={{ flexDirection: 'column' }}>
+                                    <Text style={partyInfo.blueText}>🔹 {position.positionName}</Text>
+                                </View>
+                                ))}
                         </Text>
                         <Button title='Cerrar'
                             onPress={() => setModalVisible(false)}>

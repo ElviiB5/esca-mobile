@@ -7,7 +7,7 @@ const PoliticalPartyPlatform = ({...props}) => {
         <View>
             <View style={{ marginTop: 10 }}>
                 <Text style={partyInfo.normalAlignText}>
-                    + {props.description}
+                    ✔ {props.description}
                 </Text>
             </View>
         </View>
