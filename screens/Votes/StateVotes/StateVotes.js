@@ -22,7 +22,7 @@ const StateVotes = (props) => {
         color: (opacity = 1) => `#F79BD3`,
         barColors: ["#AAC4FF", "#D2DAFF", "#EEF1FF"],
         strokeWidth: 10,
-        barPercentage: 1,
+        decimalPlaces: 0,
         useShadowColorFromDataset: false,
       };
 
@@ -36,9 +36,10 @@ const StateVotes = (props) => {
                   data={data}
                   width={345}
                   height={300}
-                  yAxisInterval={2}
                   chartConfig={chartConfig}
                   verticalLabelRotation={30}
+                  showValuesOnTopOfBars
+                  withHorizontalLabels={false}
               />
               :
               <Text style={votes.pinkText}>Este estado no tiene votos por ningún partido</Text>
