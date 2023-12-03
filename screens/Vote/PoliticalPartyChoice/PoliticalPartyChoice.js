@@ -19,7 +19,7 @@ const PoliticalPartyChoice = ({...props}) => {
                     showMessage({
                       message: "PERFECTO!",
                       description: "Muchas gracias por votar",
-                      type: "sucess",
+                      type: "success",
                     });
                     break;
                 case "No existe un periodo electoral activo":
@@ -33,7 +33,7 @@ const PoliticalPartyChoice = ({...props}) => {
                     showMessage({
                       message: "YA VOTASTE!",
                       description: "Ya tienes tu voto registrado, no puedes votar nuevamente",
-                      type: "error",
+                      type: "danger",
                     });
                     break;
                 case "Este usuario no tiene permisos para realizar esta acción":

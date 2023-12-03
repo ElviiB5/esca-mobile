@@ -40,8 +40,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "6becd32e-2f27-4e06-bd20-b22cb8cbd6ac"
+        "projectId": "f7d8029c-0617-4977-a4bd-a1bb8c9dcdbb"
       }
-    }
+    },
+    "owner": "elviravb"
   }
 }
